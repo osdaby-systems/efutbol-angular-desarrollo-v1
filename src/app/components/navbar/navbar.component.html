@@ -1,0 +1,136 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <img src="assets/img/nuevo_logo.svg" alt="Logo" width="100">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+     </button>
+  <!-- <div class=" container"> -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="d-flex flex-column" style="width:100%"> 
+        <div class="d-flex justify-content-start">
+          <div class="ml-3 mt-2">
+            <h5 style="color:white;font-family: 'Lobster', cursive;">
+                <i class="fa fa-trophy" aria-hidden="true"></i>
+              Campeonato Rumipamba de Espinozas
+            </h5>
+          </div>
+          <div class="ml-auto p-2">
+            <form>
+              <button type="button" *ngIf="!identity" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modal-login">
+          Iniciar Sesión
+        </button>
+              <button class="btn btn-outline-danger my-2 my-sm-0 d-none d-sm-none d-md-none d-lg-block" *ngIf="identity" (click)="logout()" type="submit"> 
+          Cerrar Sesión
+        </button>
+        <button class="btn btn-outline-danger my-2 my-sm-0 d-lg-none" *ngIf="identity" (click)="logout()" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> 
+        </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="p-2" style="margin-top:-30px;">
+          <ul class="navbar-nav">
+            <li class="nav-item link-1" routerLinkActive="active">
+              <a class="nav-link" [routerLink]="['home']">Inicio</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link link-1" [routerLink]="['temporada']">Temporada</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link link-1" [routerLink]="['categorias']">Categorias</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link link-1" [routerLink]="['equipos']">Equipos</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link link-1" [routerLink]="['estadios']">Estadios</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="identity">
+              <a class="nav-link link-1" [routerLink]="['calendario']">Calendario</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link link-1" [routerLink]="['calendario-general']">Calendario</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link link-1" [routerLink]="['reglamento']">Reglamento</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link link-1" [routerLink]="['jugadores']">Personal</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="identity">
+              <a class="nav-link link-1" [routerLink]="['sancion']">Sanción</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</nav>
+
+<div class="modal fade " id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content frm-login">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+      </div>
+      <div class="modal-body ">
+        <form class="form-horizontal" role="form" method="POST" action="/register">
+          <div class="row">
+            <div class="col-md-3 field-label-responsive">
+              <label for="name">N° Cédula</label>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                  <input type="text" name="cedula" #cedula="ngModel" [(ngModel)]="user.cedula" class="form-control" id="cedula" placeholder="Cédula de identidad"
+                    aria-describedby="cedula" required autofocus>
+                </div>
+                <small id="cedula" class="text-muted Error">
+                  10 Dígitos, sin espacios y guion
+                </small>
+
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div *ngIf="identity" class="alert alert-danger Error" role="alert">
+                {{mensajeError}}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 field-label-responsive">
+              <label for="password">Password</label>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                  <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" id="password"
+                    placeholder="Password" required>
+                </div>
+                <small id="password" class="text-muted">
+                  Contraseña Encriptada
+                </small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-control-feedback">
+                <span class="text-danger align-middle">
+                      <!--<i class="fa fa-close"> Example Error Message</i>-->
+                  </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="onSubmit()" class="btn btn-success pull-right">Iniciar </button>
+      </div>
+    </div>
+  </div>
+</div>

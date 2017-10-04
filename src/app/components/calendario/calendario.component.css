@@ -1,0 +1,29 @@
+#tarjetaAmarilla{
+    background: yellow !important;
+}
+#tarjetaRoja{
+    background: red !important;
+}
+
+.centrar{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+#hojaVocalia{
+    background-color: #fff;
+    /* background-image: url('/assets/img/logo_liga.svg') !important; */
+    width: 750px;
+}
+
+IMG.imgcenter{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+    }
+.inputTarjetas{
+    margin-left: -20px;
+}
