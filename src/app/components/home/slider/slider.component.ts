@@ -71,12 +71,12 @@ export class SliderComponent implements OnInit,OnChanges {
                       response.mensaje.forEach((element,i) => { 
                         if(element.image!=null && element.image!=undefined && element.image!='')                                                                                          
                           {
-                            console.log("holaaaaa src");
+                            // console.log("holaaaaa src");
                             this.srcItem[i]=this.url+'noticia/get-image-noticia/'+element.image;
                             this.noticia[i].image=element.image;}
                         else
                           {
-                            console.log("holaaaaa src2");
+                            // console.log("holaaaaa src2");
                             this.srcItem[i]=this.url+'noticia/get-image-noticia/default.jpg';
                             this.noticia[i].image='default.jpg';}
                       });
@@ -85,10 +85,10 @@ export class SliderComponent implements OnInit,OnChanges {
                       let tamaño = response.mensaje.length;
                       if(tamaño == 0){
                         this.pagina=page-2;
-                        console.log("NO HAY MAS Noticias");
+                        // console.log("NO HAY MAS Noticias");
                       }
                       console.log(this.noticia);
-                      console.log("Tamaño del Vector: "+tamaño);
+                      // console.log("Tamaño del Vector: "+tamaño);
                   }
 
               },

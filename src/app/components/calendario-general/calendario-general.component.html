@@ -56,17 +56,17 @@
                         </div>
                     <div class="card-body">
                             <div *ngFor="let item of fec; let k=index">
-                                    Partido Número: {{k+1}}
+                                        <!-- Partido Número: {{k+1}} -->
                                     <div class="row" *ngIf="item.id_equipo1 != null && item.id_equipo2 != null">
-                                        <div class="col-4 col-sm-4 col-md-2">
-                                            <h2 class="centrar">
+                                        <div class="col-2">
+                                            <h4 class="centrar">
                                                 {{item.id_equipo1.nombre_equipo}}
-                                            </h2>
+                                            </h4>
                                         </div>
-                                        <div class="d-none d-sm-none col-md-2 d-md-block ">
-                                            <img *ngIf="(item.id_equipo1.escudo_equipo)" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/' + (item.id_equipo1.escudo_equipo)}}"
+                                        <div class="col-2">
+                                            <img *ngIf="(item.id_equipo1.escudo_equipo)" class="rounded-circle imgcenter img-fluid" src="{{ url + 'equipo/imagen/' + (item.id_equipo1.escudo_equipo)}}"
                                                 alt="Generic placeholder image" width="140" height="140">
-                                            <img *ngIf="!(item.id_equipo1.escudo_equipo)" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/default.png'}}"
+                                            <img *ngIf="!(item.id_equipo1.escudo_equipo)" class="rounded-circle imgcenter img-fluid" src="{{ url + 'equipo/imagen/default.png'}}"
                                                 alt="Generic placeholder image" width="140" height="140">
                                         </div>
                                         <div class="col-1 col-sm-1 col-md-1">
@@ -74,7 +74,7 @@
                                                 <FONT FACE="arial" SIZE=10>{{item.goles_equipo1.length}}</FONT>
                                             </h6>
                                         </div>
-                                        <div class="col-1 col-sm-1 col-md-1">
+                                        <div class="col-2 col-sm-2 col-md-2">
                                             <h6 class="centrar">
                                                 <FONT FACE="arial" SIZE=10>-</FONT>
                                             </h6>
@@ -84,24 +84,16 @@
                                                 <FONT FACE="arial" SIZE=10>{{item.goles_equipo2.length}}</FONT>
                                             </h6>
                                         </div>
-                                        <div class="d-none d-sm-none col-md-2 d-md-block ">
-                                            <img *ngIf="(item.id_equipo2.escudo_equipo)" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/' + (item.id_equipo2.escudo_equipo)}}"
+                                        <div class="col-2 ">
+                                            <img *ngIf="(item.id_equipo2.escudo_equipo)" class="rounded-circle imgcenter img-fluid" src="{{ url + 'equipo/imagen/' + (item.id_equipo2.escudo_equipo)}}"
                                                 alt="Generic placeholder image" width="140" height="140">
-                                            <img *ngIf="!(item.id_equipo2.escudo_equipo)" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/default.png'}}"
+                                            <img *ngIf="!(item.id_equipo2.escudo_equipo)" class="rounded-circle imgcenter img-fluid" src="{{ url + 'equipo/imagen/default.png'}}"
                                                 alt="Generic placeholder image" width="140" height="140">
                                         </div>
-                                        <div class="col-4 col-sm-4 col-md-2">
-                                            <h6 class="centrar">
+                                        <div class="col-2">
+                                            <h4 class="centrar">
                                                 {{item.id_equipo2.nombre_equipo}}
-                                            </h6>
-                                        </div>
-                                        <div class="col-1">
-                                            <p *ngIf="(item.estado_fecha)">
-                                                Partido Finalizado
-                                            </p>
-                                            <p *ngIf="!(item.estado_fecha)">
-                                                Partido Por Jugar
-                                            </p>
+                                            </h4>
                                         </div>
                     <!-- Otra Row -->
                                         <div class="col-4 text-right">
@@ -115,16 +107,18 @@
                                                 {{TR.id.nombre_personal}} {{TR.id.apellido_personal}}<i class="fa fa-clone" style="color: red;" aria-hidden="true"  ></i> <br>
                                             </p>
                                         </div>
-                                        <div class="col-3 text-center">
+                                        <div class="col-4 text-center">
                                             <p *ngIf="!(item.fecha)">
-                                                <strong>Estadio: </strong> No definido <br>
                                                 <strong>Fecha: </strong> No definida <br>
-                                                <strong>Hora: </strong> --:-- 
+                                                <strong>Estadio: </strong> No definido <br>
+                                                <strong>Hora: </strong> --:-- <br>
+                                                <strong>Vocal: </strong> No definido 
                                             </p>
                                             <p *ngIf="(item.fecha)"> 
+                                            <strong>Fecha: </strong>{{item.fecha | date : 'yMMMMEEEEd'}} <br>
                                             <strong>Estadio: </strong> <a href="">{{item.id_estadio.nombre_estadio}}</a> <br>
-                                            <strong>Fecha: </strong>{{item.fecha | date}} <br>
-                                            <strong>Hora: </strong> {{item.hora}}
+                                            <strong>Hora: </strong> {{item.hora}} <br>
+                                            <strong>Vocal: </strong> {{item.nombre_equipo_vocalia}} 
                                         </p>
                                         </div>
                                         <div class="col-4">
@@ -139,6 +133,22 @@
                                                 <p *ngFor="let TR of (item.tarjetas_roja_equipo2)" >
                                                     <i class="fa fa-clone" style="color: red;" aria-hidden="true"  ></i>{{TR.id.nombre_personal}} {{TR.id.apellido_personal}} <br>
                                                 </p>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="item.id_equipo1 != null && item.id_equipo2 != null" class="row text-center">
+                                        <div class="col-4">
+                                            <strong>Observación:</strong>
+                                        </div>
+                                        <div class="col-4">
+                                            <p *ngIf="(item.estado_fecha)">
+                                        Partido Finalizado
+                                            </p>
+                                            <p *ngIf="!(item.estado_fecha)">
+                                         Partido Por Jugar
+                                            </p> 
+                                        </div>
+                                        <div class="col-4">
+                                            <strong>Observación:</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -213,14 +223,6 @@
                                         <h2 class="centrar">
                                             {{item.id_equipo2.nombre_equipo}}
                                         </h2>
-                                    </div>
-                                    <div class="col-1">
-                                        <p *ngIf="(item.estado_fecha)">
-                                            Partido Finalizado
-                                        </p>
-                                        <p *ngIf="!(item.estado_fecha)">
-                                            Partido Por Jugar
-                                        </p>
                                     </div>
         
                                     <!-- Otra Row -->

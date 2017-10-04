@@ -32,7 +32,7 @@ export class CalendarioComponent implements OnInit {
   public selectUndefinedOptionValue2:any;
   
 
-   public contact: any;
+  public nombresEquiposCategoria: any;
 
   public Vocalia = false;
 
@@ -189,7 +189,7 @@ export class CalendarioComponent implements OnInit {
               i++
             }
           }
-          console.log(response);
+          console.log("Equipos");
           console.log(this.arrayCategoria);
         }
       },
@@ -214,6 +214,8 @@ export class CalendarioComponent implements OnInit {
       {
         console.log(e.target.selectedIndex);
         let index=e.target.selectedIndex-1;
+        this.nombresEquiposCategoria = this.arrayCategoria[index].codigo_equipo;
+        // console.log(this.nombresEquiposCategoria);
           this._fechaService.getFechaByIdCategoriaAdministrador(this.arrayCategoria[index]._id)
           .subscribe((res)=>{
             if(res){

@@ -40,8 +40,8 @@
           <h6 class="text-center ">Fecha Numero: {{p}} </h6>
         </div>
         <div class="card-body" *ngFor="let encuentros of fec;let k=index">
-            <h1>{{encuentros.estado_fecha}}</h1>
-          <div class="row">
+            <!-- <h1>{{encuentros.estado_fecha}}</h1> -->
+          <div class="row" *ngIf="encuentros.id_equipo1 != null && encuentros.id_equipo2 != null">
             <div class="col-lg-3">
               <div class="form-group">
                 <label for="fecha_referencia">Fecha de Juego</label>
@@ -86,9 +86,9 @@
             </div>
 
           </div>
-          <div class="row text-center">
+          <div class="row text-center" *ngIf="encuentros.id_equipo1 != null && encuentros.id_equipo2 != null">
             <div class="col-lg-4">
-                <h6>{{encuentros.id_equipo1.nombre_equipo}}</h6>
+                <h4>{{encuentros.id_equipo1.nombre_equipo}}</h4>
               <div class="row">
 
                 <div class="col-7">
@@ -204,7 +204,7 @@
               </h6>
             </div>
             <div class="col-lg-4 text-center">
-                <h3>{{encuentros.id_equipo2.nombre_equipo}}</h3>
+                <h4>{{encuentros.id_equipo2.nombre_equipo}}</h4>
               <div class="row">
                 <div class="col-7">
                   <label for="inputPassword" class="col-form-label">Goles: </label>
@@ -311,11 +311,21 @@
             </div>
             <div class="col-lg-2">
               <h6>HORA</h6>
-              <div class="input-group mb-2 mr-sm-2 mb-sm-0 centrar">
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                 <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
                 <input id="hora" type="time" name="name" class="form-control" placeholder="" [(ngModel)]="encuentros.hora">
               </div>
               <!-- <small id="emailHelp" class="form-text text-muted">La fecha en al que se jugará</small> -->
+              <br>
+              <h6>VOCAL</h6>
+              
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-bookmark" aria-hidden="true"></i></div>
+                <select class="form-control" [(ngModel)]="encuentros.nombre_equipo_vocalia">
+                  <option >Seleccione Equipo</option>
+                  <option *ngFor="let equipo of (nombresEquiposCategoria)">{{equipo.nombre_equipo}}</option>
+              </select>
+              </div>
             </div>
           </div>
           <hr>
