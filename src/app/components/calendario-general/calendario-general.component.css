@@ -5,3 +5,34 @@
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
 }
+#nombreEquipo2{
+    margin-left: -20px;
+}
+
+@media all and (min-width: 960px) {
+    h4,h6{
+        font-size: 20px;
+    }
+    p{
+        font-size: 16px
+    }
+}
+ 
+@media all and (max-width: 959px) and (min-width: 600px) {
+    h4,h6{
+        font-size: 18px;
+    }
+    p{
+        font-size: 14px
+    }
+}
+ 
+@media all and (max-width: 599px) and (min-width: 300px) {
+    h4,h6{
+        font-size: 12px;
+    }
+    p{
+        font-size: 10px
+    }
+ 
+}

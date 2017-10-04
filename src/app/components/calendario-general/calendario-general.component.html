@@ -5,11 +5,11 @@
             <h3>Calendario de Encuentros</h3>
         </div>
         <hr>
-        <div class="col-5 text-center">
+        <div class="col-12 col-sm-5 col-md-5 col-lg-5 text-center">
             <h5>Temporada:</h5>
             <h5>{{temporada_actual.nombre_temporada}}</h5>
         </div>
-        <div class="col-4 text-center">
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 text-center">
             <h5>Categoria:</h5>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                     <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div>
@@ -19,7 +19,7 @@
                     </select>
             </div>
         </div>
-        <div class="col-3 text-center" *ngIf="VerCalendario && segundaVuelta.length != 0">
+        <div class="col-12  col-sm-3 col-md-3 col-lg-3 text-center" *ngIf="VerCalendario && segundaVuelta.length != 0">
             <div class="centrar">
                     <button class="btn btn-primary btn-block" (click)="calendarioVuelta('1')">Vuelta 1</button>
                     <button class="btn btn-primary btn-block" (click)="calendarioVuelta('2')">Vuelta 2</button>
@@ -58,7 +58,7 @@
                             <div *ngFor="let item of fec; let k=index">
                                         <!-- Partido Número: {{k+1}} -->
                                     <div class="row" *ngIf="item.id_equipo1 != null && item.id_equipo2 != null">
-                                        <div class="col-2">
+                                        <div class="col-3 col-sm-2 col-md-2 col-lg-2">
                                             <h4 class="centrar">
                                                 {{item.id_equipo1.nombre_equipo}}
                                             </h4>
@@ -71,17 +71,17 @@
                                         </div>
                                         <div class="col-1 col-sm-1 col-md-1">
                                             <h6 class="centrar">
-                                                <FONT FACE="arial" SIZE=10>{{item.goles_equipo1.length}}</FONT>
+                                                <FONT FACE="arial">{{item.goles_equipo1.length}}</FONT>
                                             </h6>
                                         </div>
-                                        <div class="col-2 col-sm-2 col-md-2">
+                                        <div class="  d-none d-sm-bolck d-md-block d-lg-block  col-sm-2 col-md-2 col-lg-2">
                                             <h6 class="centrar">
-                                                <FONT FACE="arial" SIZE=10>-</FONT>
+                                                <FONT FACE="arial">-</FONT>
                                             </h6>
                                         </div>
                                         <div class="col-1 col-sm-1 col-md-1">
                                             <h6 class="centrar">
-                                                <FONT FACE="arial" SIZE=10>{{item.goles_equipo2.length}}</FONT>
+                                                <FONT FACE="arial">{{item.goles_equipo2.length}}</FONT>
                                             </h6>
                                         </div>
                                         <div class="col-2 ">
@@ -90,7 +90,7 @@
                                             <img *ngIf="!(item.id_equipo2.escudo_equipo)" class="rounded-circle imgcenter img-fluid" src="{{ url + 'equipo/imagen/default.png'}}"
                                                 alt="Generic placeholder image" width="140" height="140">
                                         </div>
-                                        <div class="col-2">
+                                        <div id="nombreEquipo2"class="col-3 col-sm-2 col-md-2 col-lg-2">
                                             <h4 class="centrar">
                                                 {{item.id_equipo2.nombre_equipo}}
                                             </h4>
@@ -137,7 +137,7 @@
                                     </div>
                                     <div *ngIf="item.id_equipo1 != null && item.id_equipo2 != null" class="row text-center">
                                         <div class="col-4">
-                                            <strong>Observación:</strong>
+                                            <!-- <strong>Observación:</strong> -->
                                         </div>
                                         <div class="col-4">
                                             <p *ngIf="(item.estado_fecha)">
@@ -148,7 +148,7 @@
                                             </p> 
                                         </div>
                                         <div class="col-4">
-                                            <strong>Observación:</strong>
+                                            <!-- <strong>Observación:</strong> -->
                                         </div>
                                     </div>
                                 </div>
