@@ -15,7 +15,7 @@
       <div *ngFor="let categoria of arrayCategoria;let j=index;">
           <div role="tabpanel"  class="tab-pane fade show active" *ngIf="cClass[j]"  [id]="categoria._id">
               <br>
-            <table class="table">
+            <table class="table table-responsive">
               <thead class="table-sm table-inverse">
                 <tr>
                   <th>#</th>
@@ -32,7 +32,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="table-success" *ngFor="let equipo of categoria.codigo_equipo | OrdenVector : arrayCategoria[j].codigo_equipo; let k = index">
+                <tr *ngFor="let equipo of categoria.codigo_equipo | OrdenVector : arrayCategoria[j].codigo_equipo; let k = index">
                   <th scope="row">{{k+1}}</th>
                   <td> <a href="">{{equipo.nombre_equipo}}</a></td>
                   <td>{{equipo.PJ}}</td>
