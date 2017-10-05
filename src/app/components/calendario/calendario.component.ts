@@ -467,6 +467,8 @@ export class CalendarioComponent implements OnInit {
   }
 
   datos(data){
+    this.arrayPersonal1 = new Array(25);
+    this.arrayPersonal2 = new Array(25);
     let i = 0;
     let j = 0;
     this.Vocalia = true;
