@@ -162,8 +162,8 @@
         </label>
     </div> 
   </div>
-  <button [disabled]="!forma.valid" type="button" (click)="guardarPersonal()" class="btn btn-success">Guardar</button>
-  <button [disabled]="!forma.valid || forma.pristine" type="button" class="btn btn-success" (click)=" updatePersonal()">Editar</button>
+  <button *ngIf="!PersonaRecibida" [disabled]="!forma.valid || forma.pristine" type="button" (click)="guardarPersonal()" class="btn btn-success">Guardar</button>
+  <button  *ngIf="PersonaRecibida" [disabled]="!forma.valid || forma.pristine" type="button" class="btn btn-success" (click)=" updatePersonal()">Editar</button>
   <button  type="button" class="btn btn-danger" >Cancelar</button>
   
 </form>

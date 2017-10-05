@@ -151,13 +151,14 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                       <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
                       <textarea type="text" class="form-control" name="descripcion_equipo" placeholder="Ingrese una descripción general del equipo"
-                        [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}"                   
-                        #descripcion="ngModel" [(ngModel)]="nuevo_equipo.descripcion_equipo" required>
+                        #descripcion="ngModel" [(ngModel)]="nuevo_equipo.descripcion_equipo">
                       </textarea>
                     </div>
-                    <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
+                    <!-- <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
                         La descripción es obligatoria
-                    </div>
+                    </div> -->
+                    <!-- [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}"                    -->
+
                 </div>
 
               </div>
@@ -181,16 +182,16 @@
                   <label class="text-muted">Categoria</label>
                   <div class="input-group mb-2 mr-sm-2 mb-sm-0"> 
                     <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-cog"></i></div>
-                    <select class="form-control" [(ngModel)]="categoriaSeleccionada" name="categoriaSeleccionada" #categoria="ngModel"required
-                      [ngClass]="{'is-valid': categoria?.valid && !categoria.pristine ,'is-invalid':categoria?.invalid && categoria.touched}">
-                      <!-- <option selected >Seleccione la Categoria a la que pertenece</option>  -->
+                    <select class="form-control" [(ngModel)]="categoriaSeleccionada" name="categoriaSeleccionada" #categoria="ngModel">
                       <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria del equipo</option>
                       <option [ngValue]="categoria._id"  *ngFor="let categoria of categorias">{{categoria.nombre_categoria}}</option>                        
                     </select>
                   </div>
-                  <div *ngIf="categoria.errors?.required && categoria.touched"  class="error-campo">
+                  <!-- [ngClass]="{'is-valid': categoria?.valid && !categoria.pristine ,'is-invalid':categoria?.invalid && categoria.touched}" -->
+                  
+                  <!-- <div *ngIf="categoria.errors?.required && categoria.touched"  class="error-campo">
                       La categoria es obligatoria
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="col-md-6">
@@ -322,13 +323,13 @@
                           <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
                             <textarea type="text" class="form-control" name="descripcion_equipo" placeholder="Ingrese una descripción general del equipo"
-                              #descripcion="ngModel" [(ngModel)]="edicion_equipo.descripcion_equipo"
-                              [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}">
+                              #descripcion="ngModel" [(ngModel)]="edicion_equipo.descripcion_equipo">
                             </textarea>
                           </div>
-                          <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
+                          <!-- <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
                               La descripción es obligatoria
-                          </div>
+                          </div> -->
+                          <!-- [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}" -->
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -352,8 +353,7 @@
                       
                       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-cog"></i></div>
-                        <select class="form-control" [(ngModel)]="categoriaSeleccionada" name="categoriaSeleccionada" #categoria="ngModel"
-                            [ngClass]="{'is-valid': categoria?.valid && !categoria.pristine ,'is-invalid':categoria?.invalid && categoria.touched}">
+                        <select class="form-control" [(ngModel)]="categoriaSeleccionada" name="categoriaSeleccionada" #categoria="ngModel">
                             <!-- <option selected >Seleccione la Categoria a la que pertenece</option>  -->
                             <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria del equipo</option>
                             <option [ngValue]="categoria._id" 
@@ -364,9 +364,11 @@
                             </option>                        
                           </select>
                       </div>
-                      <div *ngIf="categoria.errors?.required && categoria.touched"  class="error-campo">
+                      <!-- [ngClass]="{'is-valid': categoria?.valid && !categoria.pristine ,'is-invalid':categoria?.invalid && categoria.touched}" -->
+                      
+                      <!-- <div *ngIf="categoria.errors?.required && categoria.touched"  class="error-campo">
                           La categoria es obligatoria
-                      </div>
+                      </div> -->
                     </div>
                   </div>              
                   <div class="col-md-6">

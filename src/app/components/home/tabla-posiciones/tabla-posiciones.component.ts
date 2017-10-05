@@ -1,5 +1,5 @@
 
-import { Component, OnInit,Pipe } from '@angular/core';
+import { Component, OnInit,Pipe, DoCheck} from '@angular/core';
 import { TemporadaService } from '../../../services/temporada.service';
 import { UserService } from '../../../services/user.service';
 import { CategoriaService } from '../../../services/categoria.service';
@@ -17,7 +17,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./tabla-posiciones.component.css']  
 })
 
-export class TablaPosicionesComponent implements OnInit {
+export class TablaPosicionesComponent implements OnInit, DoCheck {
   public cClass:Array<Boolean>;  
   public token;
   public temporada_actual: Temporada;
@@ -42,16 +42,24 @@ export class TablaPosicionesComponent implements OnInit {
     private _categoriaService: CategoriaService,
     private _fechaService: FechaService
   ) {    
-    this.token = this._userService.getToken();             
+    this.token = this._userService.getToken();     
    }
 
    ngOnInit() {
+     
       this.obtenerTemporadas();                        
       this.cClass=new Array();     
       this.cClass[0]=true;
       this.obtenerFechas(0);
-
   }
+
+  ngDoCheck(){                        
+    // this.cClass=new Array();     
+    // this.cClass[0]=true;
+  }
+  
+
+
 
   obtenerTemporadas() {
     this.temporada_actual = this.temporada_actual = JSON.parse(localStorage.getItem('Temporada_Actual'));
@@ -92,8 +100,7 @@ export class TablaPosicionesComponent implements OnInit {
 
   obtenerFechas(e){  
         let fechasPorEquipo=new Array();
-        if(this.arrayCategoria[e]!= undefined)
-        {
+ 
           this._fechaService.getFechaByIdCategoria(this.arrayCategoria[e]._id)
           .subscribe((res)=>{            
             if(res){
@@ -205,10 +212,10 @@ export class TablaPosicionesComponent implements OnInit {
             }
           },(err)=>{
             if(err.status==404){
-              swal(
-                'Calendario',
-                '¡No existe un calendario para esta categoría.!',                
-              )
+              // swal(
+              //   'Calendario',
+              //   '¡No existe un calendario para esta categoría.!',                
+              // )
             }else{
               swal(
                 'Oops...',
@@ -218,7 +225,7 @@ export class TablaPosicionesComponent implements OnInit {
             }
                         
           }); 
-        }             
+         
                           
           
     

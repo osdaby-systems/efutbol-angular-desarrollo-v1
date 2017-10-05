@@ -146,10 +146,20 @@ export class EditarTemporadaComponent implements OnInit {
             localStorage.setItem('Temporada_Actual', JSON.stringify(this.temporada_nueva));
             //Cambiar el localStotage de la temporada Actual.
             this.obtenerTemporadas();
+            swal(
+              'Temporada Exitosamente Actualizada',
+              '',
+              'success'
+              );
           }
         },
         error => {
           console.log("Error");
+          swal(
+            '¡Oops!',
+            'Ha ocurrido un error, intente en un momento',
+            'error'
+          );
         }
         );
     } else {
