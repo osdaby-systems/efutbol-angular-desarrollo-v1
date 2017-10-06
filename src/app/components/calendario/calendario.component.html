@@ -662,13 +662,12 @@
 
 
 
-<div class="container" id="hojaVocalia" *ngIf="Vocalia">
+<div id="hojaVocalia"  class="container"  *ngIf="Vocalia">
     <div class="row">
-      <div class="col-12">
-          <table align="center" border=2 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:12px" width="100%">
+      <div  class="col-12">
+          <table   align="center" border=2 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:12px" width="100%">
               <thead>
-                  <th><h5 class="text-center">{{temporada_actual.nombre_temporada}}</h5>
-                  </th>
+                  <th style="height: 40px;"></th>
               </thead>
             </table>
             <table align="center" border=1 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:12px" width="100%">
@@ -681,7 +680,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <table align="center" border=1 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:12px" width="100%">
+        <table  align="center" border=1 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:12px" width="100%">
           <thead>
               <th>&nbsp;<strong>Categoria:</strong>&nbsp;</th>
               <th>&nbsp;&nbsp;{{datosVocalia.categoria}}&nbsp;&nbsp;</th>
@@ -696,7 +695,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-6" style="padding-right: 0px;">
         <table align="center" border=1 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:12px" width="100%">
           <thead>
               <th>&nbsp;Equipo:&nbsp;</th>
@@ -705,7 +704,7 @@
           </thead>
         </table>
       </div>
-      <div class="col-6">
+      <div class="col-6" style="padding-left: 0px;">
         <table align="center" border=1 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:12px" width="100%">
           <thead>
               <th>&nbsp;Equipo:&nbsp;</th>
@@ -716,14 +715,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
-        <table align="center" border=1 cellspacing=3 cellpadding=3 bordercolor="#000000" style="font-size:10px" width="100%">
+      <div class="col-6" style="padding-right: 0px;" >
+        <table border=1 cellspacing=3 cellpadding=3 bordercolor="#000000" style="font-size:10px" width="100%">
           <thead>
             <tr>
-              <th ROWSPAN=2> &nbsp;# J&nbsp; </th>
-              <th ROWSPAN=2>NOMBRES APELLIDO / #CÉDULA </th>
-              <th ROWSPAN=2>GOL&nbsp; </th>
-              <th COLSPAN=3>TARJETAS </th>
+              <th width="7%" ROWSPAN=2></th>
+              <th width="64%" ROWSPAN=2></th>
+              <th width="9%" ROWSPAN=2></th>
+              <th width="20%" COLSPAN=3 style="height: 22px;"></th>
             </tr>
             <tr>
               <th>Am</th>
@@ -734,9 +733,7 @@
           <tbody>
             <tr *ngFor="let jugador of arrayPersonal1 ; let i=index">
               <td></td>
-              <td *ngIf="jugador != undefined">
-                {{jugador.nombre_personal}} {{jugador.apellido_personal}}
-              </td>
+              <td *ngIf="jugador != undefined">-</td>
               <td *ngIf="jugador === undefined">-</td>
               <td></td>
               <td></td>
@@ -748,40 +745,41 @@
         <table align="center" border=1 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:10px" width="100%">
           <thead>
             <tr>
-              <th>#CAMBIO</th>
-              <th>&nbsp; #Jugador INGRESA <i class="fa fa-arrow-up" aria-hidden="true"></i></th>
-              <th>&nbsp; #Jugador SALE <i class="fa fa-arrow-down" aria-hidden="true"></i></th>
-              <th>Am</th>
-              <th>Am</th>
-              <th>Ro</th>
+              <th width="15%"></th>
+              <th width="34%"><i class="fa fa-arrow-up" aria-hidden="true"></i></th>
+              <th width="30%"><i class="fa fa-arrow-down" aria-hidden="true"></i></th>
+              <th width="7%" ></th>
+              <th width="7%" ></th>
+              <th width="7%" ></th>
+            </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
+            <tr style="height: 22px;">
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>2</td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr>
-              <td>3</td>
+            <tr style="height: 22px;">
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr>
-              <td>4</td>
+            <tr style="height: 22px;">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr style="height: 22px;">
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -834,14 +832,14 @@
           </tbody>
         </table>
       </div>
-      <div class="col-6">
-        <table align="center" border=1 cellspacing=3 cellpadding=3 bordercolor="#000000" style="font-size:10px" width="100%">
+      <div class="col-6" style="padding-left: 0px;">
+        <table border=1 cellspacing=3 cellpadding=3 bordercolor="#000000" style="font-size:10px" width="100%">
           <thead>
             <tr>
-              <th ROWSPAN=2> &nbsp;# J&nbsp; </th>
-              <th ROWSPAN=2> NOMBRES APELLIDOS / #CÉDULA </th>
-              <th ROWSPAN=2> GOL&nbsp; </th>
-              <th COLSPAN=3> TARJETA </th>
+              <th width="7%" ROWSPAN=2></th>
+              <th width="64%" ROWSPAN=2></th>
+              <th width="9%" ROWSPAN=2></th>
+              <th width="20%" COLSPAN=3 style="height: 22px;"></th>
             </tr>
             <tr>
               <th>Am</th>
@@ -852,8 +850,8 @@
           <tbody>
             <tr *ngFor="let jugador of arrayPersonal2">
               <th></th>
-              <td *ngIf="jugador != undefined">
-                {{jugador.nombre_personal}} {{jugador.apellido_personal}}
+              <td *ngIf="jugador != undefined">-
+                <!-- {{jugador.nombre_personal}} {{jugador.apellido_personal}} -->
               </td>
               <td *ngIf="jugador === undefined">-</td>
               <td></td>
@@ -866,41 +864,41 @@
         <table align="center" border=1 cellpadding=3 cellspacing=3 bordercolor="#000000" style="font-size:10px" width="100%">
           <thead>
             <tr>
-              <th>#CAMBIO</th>
-              <th>&nbsp; #Jugador INGRESA <i class="fa fa-arrow-up" aria-hidden="true"></i></th>
-              <th>&nbsp; #Jugador SALE <i class="fa fa-arrow-down" aria-hidden="true"></i></th>
-              <th>Am</th>
-              <th>Am</th>
-              <th>Ro</th>
+              <th width="15%"></th>
+              <th width="34%"><i class="fa fa-arrow-up" aria-hidden="true"></i></th>
+              <th width="30%"><i class="fa fa-arrow-down" aria-hidden="true"></i></th>
+              <th width="7%" ></th>
+              <th width="7%" ></th>
+              <th width="7%" ></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
+            <tr style="height: 22px;">
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>2</td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr>
-              <td>3</td>
+            <tr style="height: 22px;">
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr>
-              <td>4</td>
+            <tr style="height: 22px;">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr style="height: 22px;">
+              <td></td>
               <td></td>
               <td></td>
               <td></td>

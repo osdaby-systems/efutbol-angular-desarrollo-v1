@@ -113,9 +113,9 @@ export class DetalleEquipoComponent implements OnInit {
           doc.setFontSize(10);
           doc.text(this.edicion_equipo.nombre_equipo,37,30);
           doc.text(jugador[0].apellido_personal,37,39);
-          doc.text(jugador[0].nombre_personal,37,43);          
+          doc.text(jugador[0].nombre_personal,37,43);
           doc.text(jugador[0].cedula_personal,37,47);
-        }        
+        }
 
         if(jugador[1]!=undefined){
           var nacimiento=moment(jugador[1].fecha_nacimiento_personal).format('YYYY');
