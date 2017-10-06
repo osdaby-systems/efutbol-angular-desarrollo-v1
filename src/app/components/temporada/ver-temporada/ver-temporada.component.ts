@@ -111,12 +111,21 @@ export class VerTemporadaComponent implements OnInit {
     console.log(this.temporada_nueva);
     this._temporadaService.addTemporada(this.url + 'temporada/guardar',
       this.temporada_nueva, this.filesToUpload, this.token, 'url_reglamento_temporada')
-      .then(response => { console.log(response); });
-      swal(
-        'Temporada Exitosamente Creada',
-        '',
-        'success'
-        );
+      .then(response => { 
+        swal(
+          'Temporada Exitosamente Creada',
+          '',
+          'success'
+          );
+        console.log(response); }).catch((err)=>{
+          console.log(err);
+          swal(
+            '¡Oops!',
+            'Ha ocurrido un error, intente en un momento',
+            'error'
+          );
+        });
+      
         this.temporada_nueva = new Temporada('','', this.a, this.a, '', '', this.a);
          //this._router.navigate(['']);
     }

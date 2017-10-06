@@ -10,14 +10,16 @@ import{TablaPosicionesComponent} from './tabla-posiciones/tabla-posiciones.compo
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public verElemento:string="tabla";
+  public verElemento:string;
   public noticia_editar:any;
   public srcItem:any;
   public msgEvent:any;
   public noticias:any;
   public noticiaEditar:any;
   
-  constructor() { }
+  constructor() {
+    this.verElemento="tabla";
+   }
 
   
   mostrarElemento(event,i){
