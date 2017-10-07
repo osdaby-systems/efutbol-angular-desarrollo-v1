@@ -498,8 +498,6 @@ export class CalendarioComponent implements OnInit {
       }
     });
     this.arrayPersonal2 = _.orderBy(this.arrayPersonal2,['nombre_personal'],['asc']);
-
-
   }
 }
 
