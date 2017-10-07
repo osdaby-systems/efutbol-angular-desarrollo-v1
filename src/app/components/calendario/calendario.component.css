@@ -16,6 +16,8 @@
     background-color: #fff;
     /* background-image: url('/assets/img/logo_liga.svg') !important; */
     width: 750px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 IMG.imgcenter{

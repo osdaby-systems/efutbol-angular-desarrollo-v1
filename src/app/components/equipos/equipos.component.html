@@ -1,290 +1,119 @@
 <br><br>
-<div class="container marketing">
-  <div class="row">
-    <div class="col-lg-4 equipo" *ngFor="let equi of equipos; let i = index">
-        <div class="card">
-          <div class="card-header">
-            <h5>{{equi.nombre_equipo}}</h5>
-          </div>
-          <div class="card-block">
-            <img  *ngIf="equi.escudo_equipo" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/' + equi.escudo_equipo}}" alt="Escudo del equipo" width="140"
-            height="140">
-            <img *ngIf="!equi.escudo_equipo" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/default.png'}}" alt="Generic placeholder image" width="140"
-            height="140">
-            <br>
-            <p class="card-text">Año de Fundación: {{equi.anio_fundacion_equipo}}</p>
-            <div class="card-text"><strong>Categoria: </strong> 
-              <p *ngIf="(equi.estado_equipo)">
-                Ya Asignado</p>
-              <p *ngIf="!(equi.estado_equipo)">
-                No Asignado</p>
-            </div>
-            <p>
-              <a [routerLink]="['/detalle-equipo']" (click)="guardarEquipoSeleccionado(equi)" class="btn btn-primary" role="button">
-                Ver más detalles &raquo;</a>
-            </p>
-          </div>
-          <div class="card-footer">
-            <div *ngFor="let item of (equi.personal_equipo)">
-              <p *ngIf="item.rol_personal == 'presidente' || item.rol_personal == 'ambos'">
-                <strong>Presidente: </strong> {{item.nombre_personal}} {{item.apellido_personal}}
-              </p>
-            </div>
-            <div class="btn-group navbar" id="navbar-example2">
-                <a *ngIf="identity" class="btn btn-primary pull-left navbar-brand" role="button" 
-                  data-toggle="collapse" href="#editarEquipo" (click)="verUpdateEquipo(equi)" aria-expanded="false"
-                   aria-controls="editarEquipo"
-                   >
-                  <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a *ngIf="identity" (click)="eliminarEquipo(equi)" class="btn btn-danger pull-right"  role="button">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i></a>
-            </div>
-            
-          </div> 
-        </div>
-      </div>
-
-
-
-    <div class="col-lg-4 equipo" *ngIf="formulario_equipo == true && identity">
-      <div class="card">
-        <div class="card-header">
-          <h5>Crear Nuevo Equipo</h5>
-        </div>
-        <div class="card-block">
-          <a  data-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample" 
-            (click)="ver_registro_equipo($event)">
-            <img id="addequipo" class="rounded-circle imgcenter" src="assets/popper/docs/images/nuevo.jpg" 
-              alt="Generic placeholder image" width="140" height="140"  >
-          </a>
-          <br>
-          <h2><i class="fa fa-hand-o-up" aria-hidden="true"></i></h2>
-          <p class="card-text">Click sobre la Imagen para empezar</p>
-          <br>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted"><i class="fa fa-creative-commons" aria-hidden="true"></i> T.O.D. 2017</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.col-lg-4 -->
-  </div>
-  <!-- /.row -->
-</div>
-
-<!-- -->
-<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-
-  <div class="collapse " id="collapseExample">
-    <div class="card container">
-      <form #forma="ngForm">
-        <div class="card-header text-center">
-          <h3 [id]="aqui">Crear Nuevo Equipo</h3>
-        </div>
-
-        <div class="card-body">
-          
-          <div class="row">
-            <div class="col-lg-10">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="text-muted">Nombre</label>  
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-futbol-o"></i></div>
-                      <input type="text" name="nombre_equipo" class="form-control" placeholder="Ingrese el nombre del equipo" #nombre="ngModel"
-                      [ngClass]="{'is-valid': nombre?.valid && !nombre.pristine ,'is-invalid':nombre?.invalid && nombre.touched}"
-                      [(ngModel)]="nuevo_equipo.nombre_equipo" required>
-                    </div>
-                    <div *ngIf="nombre.errors?.required && nombre.touched"  class="error-campo">
-                        El nombre es obligatorio
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="text-muted">Año de fundación</label>  
-                  <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
-                      <input type="number" name="anio_fundacion_equipo" class="form-control"  #fundacion="ngModel"
-                      [ngClass]="{'is-valid': fundacion?.valid && !fundacion.pristine ,'is-invalid':fundacion?.invalid && fundacion.touched}"                  
-                      [(ngModel)]="nuevo_equipo.anio_fundacion_equipo" required>
-                    
-                    </div>
-                    <div *ngIf="fundacion.errors?.required && fundacion.touched"  class="error-campo">
-                        El año de fundación es obligatorio
-                    </div>
-                  </div>
-                </div>
+<div id="cuerpo">
+    <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4 equipo" *ngFor="let equi of equipos; let i = index">
+            <div class="card">
+              <div class="card-header">
+                <h5>{{equi.nombre_equipo}}</h5>
               </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label class="text-muted">Color Principal</label>  
-                  <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-check-circle"></i></div>
-                      <input type="text" name="color_principal_equipo" class="form-control" placeholder="Ingrese el color principal del equipo" #colorP="ngModel"
-                      [ngClass]="{'is-valid': colorP?.valid && !colorP.pristine ,'is-invalid':colorP?.invalid && colorP.touched}"                   
-                      [(ngModel)]="nuevo_equipo.color_principal_equipo" required>
-                    </div>
-                    <div *ngIf="colorP.errors?.required && colorP.touched"  class="error-campo">
-                        El Color principal es obligatorio
-                    </div>
-                  </div>
+              <div class="card-block">
+                <img  *ngIf="equi.escudo_equipo" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/' + equi.escudo_equipo}}" alt="Escudo del equipo" width="140"
+                height="140">
+                <img *ngIf="!equi.escudo_equipo" class="rounded-circle imgcenter" src="{{ url + 'equipo/imagen/default.png'}}" alt="Generic placeholder image" width="140"
+                height="140">
+                <br>
+                <p class="card-text">Año de Fundación: {{equi.anio_fundacion_equipo}}</p>
+                <div class="card-text"><strong>Categoria: </strong> 
+                  <p *ngIf="(equi.estado_equipo)">
+                    Ya Asignado</p>
+                  <p *ngIf="!(equi.estado_equipo)">
+                    No Asignado</p>
                 </div>
-                <div class="col-md-6">
-                  <label class="text-muted">Color Secundario</label>  
-                  <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-check-circle-o"></i></div>
-                      <input type="text" name="color_secundario_equipo" class="form-control" placeholder="Ingrese el color secundario del equipo" #colorS="ngModel" 
-                        [ngClass]="{'is-valid': colorS?.valid && !colorS.pristine ,'is-invalid':colorS?.invalid && colorS.touched}"                   
-                        [(ngModel)]="nuevo_equipo.color_secundario_equipo" required>
-                    </div>
-                    <div *ngIf="colorS.errors?.required && colorS.touched"  class="error-campo">
-                        El Color secundario es obligatorio
-                    </div>
-                  </div>
-                </div>
+                <p>
+                  <a [routerLink]="['/detalle-equipo']" (click)="guardarEquipoSeleccionado(equi)" class="btn btn-primary" role="button">
+                    Ver más detalles &raquo;</a>
+                </p>
               </div>
-              <!-- sdfghjkl -->
-              <div class="row">
-                <div class="col-md-6">
-                  <label class="text-muted">Descripción</label>  
-                  <div class="form-group">
-                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
-                        <textarea type="text" class="form-control" name="descripcion_equipo" placeholder="Ingrese una descripción general del equipo"
-                          #descripcion="ngModel" [(ngModel)]="nuevo_equipo.descripcion_equipo">
-                        </textarea>
-                      </div>
-                      <!-- <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
-                          La descripción es obligatoria
-                      </div> -->
-                      <!-- [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}"                    -->
-
-                  </div>
-
+              <div class="card-footer">
+                <div *ngFor="let item of (equi.personal_equipo)">
+                  <p *ngIf="item.rol_personal == 'presidente' || item.rol_personal == 'ambos'">
+                    <strong>Presidente: </strong> {{item.nombre_personal}} {{item.apellido_personal}}
+                  </p>
                 </div>
-                <div class="col-md-6">
-                    <label class="text-muted">Observación</label>
-                    <div class="form-group">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                          <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
-                          <textarea type="text" class="form-control" name="observacion_equipo" placeholder="Ingrese una observación del equipo"
-                            #observacion="ngModel" [(ngModel)]="nuevo_equipo.observacion_equipo">
-                          </textarea>
-                        </div>
-                      </div>
+                <div class="btn-group" >
+                    <a *ngIf="identity" class="btn btn-primary pull-left " 
+                      data-toggle="collapse" href="#editarEquipo" (click)="verUpdateEquipo(equi)" aria-expanded="false"
+                      aria-controls="editarEquipo"
+                      >
+                      <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a *ngIf="identity" (click)="eliminarEquipo(equi)" class="btn btn-danger pull-right"  role="button">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 </div>
-              </div>
-
-              <!-- 3 -->
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="text-muted">Categoria</label>
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0"> 
-                      <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-cog"></i></div>
-                      <select class="form-control" [(ngModel)]="categoriaSeleccionada" name="categoriaSeleccionada" #categoria="ngModel">
-                        <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria del equipo</option>
-                        <option [ngValue]="categoria._id"  *ngFor="let categoria of categorias">{{categoria.nombre_categoria}}</option>                        
-                      </select>
-                    </div>
-                    <!-- [ngClass]="{'is-valid': categoria?.valid && !categoria.pristine ,'is-invalid':categoria?.invalid && categoria.touched}" -->
-                    
-                    <!-- <div *ngIf="categoria.errors?.required && categoria.touched"  class="error-campo">
-                        La categoria es obligatoria
-                    </div> -->
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
-                      <div class="input-group">                
-                        <span>
-                            <button class="btn btn-success" type="button" (click)="addLogro()">
-                              <i class="fa fa-plus-circle" aria-hidden="true"></i></button>                            
-                          </span>
-                        </div>
-                    </div>
-                  <div class="form-group" *ngIf=addAndDelete>
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" *ngFor="let logro of nuevo_equipo.logros_equipo; let i=index">
-                      <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
-                      <div class="input-group">
-                          <input type="text" class="form-control" name="logro_{{i}}"   [(ngModel)]="nuevo_equipo.logros_equipo[i].logro" placeholder="Logros del Equipo" aria-label="Logros">
-                          <span class="input-group-btn">
-                            <button class="btn btn-success" type="button" (click)="addLogro()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-                            <button class="btn btn-danger" type="button" (click)="deleteLogro(i)"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
-                          </span>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-2">
-              <div class="form-group">
-                <input type="file" (change)="imagen($event)" name="file-5[]" id="file-5" class=" inputfile inputfile-4" />
-                <label for="file-5" ><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span>{{nombre_escudo}}</span></label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer btn-group">
-          
-              <button [disabled]="!forma.valid || forma.pristine" class="btn btn-success pull-left" type="submit" (click)="guardarEquipo(); forma.reset()">
-                  <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Guardar 
-              </button>
-              <a class="btn btn-danger pull-right" role="button" data-toggle="collapse" href="#collapseExample"
-                aria-expanded="true" aria-controls="collapseExample"
-                (click)="cancelar_registro_equipo($event); forma.reset()"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancelar </a>
-          
-          
-        </div>
-      </form>
-    </div>
-  </div>
-
-
-  <div class="collapse" id="editarEquipo">
-        <div class="card container">
-          <form #forma2="ngForm">
                 
-            <div class="card-header text-center">
-              <h3>Editar Equipo</h3>
+              </div> 
             </div>
+          </div>
+
+
+
+        <div class="col-lg-4 equipo" *ngIf="formulario_equipo == true && identity">
+          <div class="card">
+            <div class="card-header">
+              <h5>Crear Nuevo Equipo</h5>
+            </div>
+            <div class="card-block">
+              <a  data-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample" 
+                (click)="ver_registro_equipo($event)">
+                <img id="addequipo" class="rounded-circle imgcenter" src="assets/popper/docs/images/nuevo.jpg" 
+                  alt="Generic placeholder image" width="140" height="140"  >
+              </a>
+              <br>
+              <h2><i class="fa fa-hand-o-up" aria-hidden="true"></i></h2>
+              <p class="card-text">Click sobre la Imagen para empezar</p>
+              <br>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"><i class="fa fa-creative-commons" aria-hidden="true"></i> T.O.D. 2017</small>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-lg-4 -->
+      </div>
+      <!-- /.row -->
+    </div>
+
+    <!-- -->
+
+
+      <div class="collapse " id="collapseExample">
+        <div class="card container">
+          <form #forma="ngForm">
+            <div class="card-header text-center">
+              <h3 [id]="aqui">Crear Nuevo Equipo</h3>
+            </div>
+
             <div class="card-body">
+              
               <div class="row">
                 <div class="col-lg-10">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label class="text-muted">Nombre</label>
+                        <label class="text-muted">Nombre</label>  
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                           <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-futbol-o"></i></div>
-                          <input type="text"  #nombre2="ngModel" [(ngModel)]="edicion_equipo.nombre_equipo" 
-                            [ngClass]="{'is-valid': nombre2?.valid && !nombre2.pristine ,'is-invalid':nombre2?.invalid && nombre2.touched}"
-                            name="nombre_equipo" class="form-control" placeholder="Ingrese el nombre del Equipo" required>
+                          <input type="text" name="nombre_equipo" class="form-control" placeholder="Ingrese el nombre del equipo" #nombre="ngModel"
+                          [ngClass]="{'is-valid': nombre?.valid && !nombre.pristine ,'is-invalid':nombre?.invalid && nombre.touched}"
+                          [(ngModel)]="nuevo_equipo.nombre_equipo" required>
                         </div>
-                        <div *ngIf="nombre2.errors?.required && nombre2.touched" class="error-campo">
+                        <div *ngIf="nombre.errors?.required && nombre.touched"  class="error-campo">
                             El nombre es obligatorio
                         </div>
                       </div>
                     </div>
-        
+
                     <div class="col-md-6">
+                      <label class="text-muted">Año de fundación</label>  
                       <div class="form-group">
-                        <label class="text-muted">Año de fundación</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                           <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
-                          <input type="number" #fundacion2="ngModel" [(ngModel)]="edicion_equipo.anio_fundacion_equipo" 
-                            [(ngModel)]="edicion_equipo.anio_fundacion_equipo " 
-                            [ngClass]="{'is-valid': fundacion2?.valid && !fundacion2.pristine ,'is-invalid':fundacion2?.invalid && fundacion2.touched}"                  
-                            name="anio_fundacion_equipo" class="form-control" placeholder="Ingrese el año de fundacion del quipo" required>
+                          <input type="number" name="anio_fundacion_equipo" class="form-control"  #fundacion="ngModel"
+                          [ngClass]="{'is-valid': fundacion?.valid && !fundacion.pristine ,'is-invalid':fundacion?.invalid && fundacion.touched}"                  
+                          [(ngModel)]="nuevo_equipo.anio_fundacion_equipo" required>
+                        
                         </div>
-                        <div *ngIf="fundacion2.errors?.required && fundacion2.touched"  class="error-campo">
+                        <div *ngIf="fundacion.errors?.required && fundacion.touched"  class="error-campo">
                             El año de fundación es obligatorio
                         </div>
                       </div>
@@ -292,83 +121,77 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6">
+                      <label class="text-muted">Color Principal</label>  
                       <div class="form-group">
-                        <label class="text-muted">Color principal</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                           <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-check-circle"></i></div>
-                          <input type="text" #colorP2="ngModel" [(ngModel)]="edicion_equipo.color_principal_equipo"
-                            [ngClass]="{'is-valid': colorP2?.valid && !colorP2.pristine ,'is-invalid':colorP2?.invalid && colorP2.touched}"                                           
-                            name="color_principal_equipo" class="form-control" placeholder="Ingrese el color Principal del equipo" required>
+                          <input type="text" name="color_principal_equipo" class="form-control" placeholder="Ingrese el color principal del equipo" #colorP="ngModel"
+                          [ngClass]="{'is-valid': colorP?.valid && !colorP.pristine ,'is-invalid':colorP?.invalid && colorP.touched}"                   
+                          [(ngModel)]="nuevo_equipo.color_principal_equipo" required>
                         </div>
-                        <div *ngIf="colorP2.errors?.required && colorP2.touched"  class="error-campo">
+                        <div *ngIf="colorP.errors?.required && colorP.touched"  class="error-campo">
                             El Color principal es obligatorio
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
+                      <label class="text-muted">Color Secundario</label>  
                       <div class="form-group">
-                        <label class="text-muted">Color secundario</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                           <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-check-circle-o"></i></div>
-                          <input type="text" #colorS2="ngModel" [(ngModel)]="edicion_equipo.color_secundario_equipo"
-                            [ngClass]="{'is-valid': colorS2?.valid && !colorS2.pristine ,'is-invalid':colorS2?.invalid && colorS2.touched}"                   
-                          
-                            name="colorS" class="form-control" placeholder="Ingrese el color secundario del equipo" required>
-                          
+                          <input type="text" name="color_secundario_equipo" class="form-control" placeholder="Ingrese el color secundario del equipo" #colorS="ngModel" 
+                            [ngClass]="{'is-valid': colorS?.valid && !colorS.pristine ,'is-invalid':colorS?.invalid && colorS.touched}"                   
+                            [(ngModel)]="nuevo_equipo.color_secundario_equipo" required>
                         </div>
-                        <div *ngIf="colorS2.errors?.required && colorS2.touched"  class="error-campo">
+                        <div *ngIf="colorS.errors?.required && colorS.touched"  class="error-campo">
                             El Color secundario es obligatorio
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!-- sdfghjkl -->
                   <div class="row">
-                      <div class="col-md-6">
+                    <div class="col-md-6">
+                      <label class="text-muted">Descripción</label>  
+                      <div class="form-group">
+                          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
+                            <textarea type="text" class="form-control" name="descripcion_equipo" placeholder="Ingrese una descripción general del equipo"
+                              #descripcion="ngModel" [(ngModel)]="nuevo_equipo.descripcion_equipo">
+                            </textarea>
+                          </div>
+                          <!-- <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
+                              La descripción es obligatoria
+                          </div> -->
+                          <!-- [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}"                    -->
+
+                      </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label class="text-muted">Observación</label>
                         <div class="form-group">
-                          <label class="text-muted">Descripción</label>
                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                               <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
-                              <textarea type="text" class="form-control" name="descripcion_equipo" placeholder="Ingrese una descripción general del equipo"
-                                #descripcion="ngModel" [(ngModel)]="edicion_equipo.descripcion_equipo">
+                              <textarea type="text" class="form-control" name="observacion_equipo" placeholder="Ingrese una observación del equipo"
+                                #observacion="ngModel" [(ngModel)]="nuevo_equipo.observacion_equipo">
                               </textarea>
                             </div>
-                            <!-- <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
-                                La descripción es obligatoria
-                            </div> -->
-                            <!-- [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}" -->
                           </div>
-                      </div>
-                      <div class="col-md-6">
-                        
-                          <div class="form-group">
-                            <label class="text-muted">Observación</label>
-                              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
-                                <textarea type="text" class="form-control" name="observacion_equipo" placeholder="Ingrese una observación del equipo"
-                                #observacion_equipo="ngModel" [(ngModel)]="edicion_equipo.observacion_equipo">
-                                </textarea>
-                              </div>
-                            </div>
-        
-                      </div>
+                    </div>
                   </div>
-                    
+
+                  <!-- 3 -->
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <label class="text-muted">Categoria</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0"> 
                           <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-cog"></i></div>
                           <select class="form-control" [(ngModel)]="categoriaSeleccionada" name="categoriaSeleccionada" #categoria="ngModel">
-                              <!-- <option selected >Seleccione la Categoria a la que pertenece</option>  -->
-                              <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria del equipo</option>
-                              <option [ngValue]="categoria._id" 
-                                  [disabled]="categoriaActualId==categoria._id" *ngFor="let categoria of categorias">
-                                  {{categoria.nombre_categoria}}
-                                <span *ngIf="categoriaActualId==categoria._id">(Categoria Actual)
-                                </span>
-                              </option>                        
-                            </select>
+                            <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria del equipo</option>
+                            <option [ngValue]="categoria._id"  *ngFor="let categoria of categorias">{{categoria.nombre_categoria}}</option>                        
+                          </select>
                         </div>
                         <!-- [ngClass]="{'is-valid': categoria?.valid && !categoria.pristine ,'is-invalid':categoria?.invalid && categoria.touched}" -->
                         
@@ -376,52 +199,230 @@
                             La categoria es obligatoria
                         </div> -->
                       </div>
-                    </div>              
-                    <div class="col-md-6">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0" *ngIf="addAndDelete">
-                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
-                            <div class="input-group">                
-                              <span>
-                                  <button class="btn btn-success" type="button" (click)="addLogro()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>                            
-                                </span>
-                              </div>
-                          </div>
-                        <div class="form-group">
-                          <div class="input-group mb-2 mr-sm-2 mb-sm-0" *ngFor="let logro of edicion_equipo.logros_equipo; let i=index">
-                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="logro_{{i}}"   [(ngModel)]="edicion_equipo.logros_equipo[i].logro" placeholder="Logros del Equipo" aria-label="Logros">
-                                <span class="input-group-btn">
-                                  <button class="btn btn-success" type="button" (click)="addLogro()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-                                  <button class="btn btn-danger" type="button" (click)="deleteLogro(i)"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
-                                </span>
-                              </div>
-                          </div>
-                        </div>
                     </div>
-                    
+                    <div class="col-md-6">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                          <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
+                          <div class="input-group">                
+                            <span>
+                                <button class="btn btn-success" type="button" (click)="addLogro()">
+                                  <i class="fa fa-plus-circle" aria-hidden="true"></i></button>                            
+                              </span>
+                            </div>
+                        </div>
+                      <div class="form-group" *ngIf=addAndDelete>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0" *ngFor="let logro of nuevo_equipo.logros_equipo; let i=index">
+                          <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
+                          <div class="input-group">
+                              <input type="text" class="form-control" name="logro_{{i}}"   [(ngModel)]="nuevo_equipo.logros_equipo[i].logro" placeholder="Logros del Equipo" aria-label="Logros">
+                              <span class="input-group-btn">
+                                <button class="btn btn-success" type="button" (click)="addLogro()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                <button class="btn btn-danger" type="button" (click)="deleteLogro(i)"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+                              </span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-2">
                   <div class="form-group">
                     <input type="file" (change)="imagen($event)" name="file-5[]" id="file-5" class=" inputfile inputfile-4" />
-                    <label for="file-5" ><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
-                      <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
-                      </svg></figure> <span>{{nombre_escudo}}</span></label>
+                    <label for="file-5" ><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span>{{nombre_escudo}}</span></label>
                   </div>
                 </div>
-        
               </div>
-        
             </div>
             <div class="card-footer btn-group">
-              <button  [disabled]="!forma2.valid" class="btn btn-success pull-left"  role="button" (click)="updateEquipo()">
-                  <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Guardar</button>
-              <a class="btn btn-danger pull-right" role="button" data-toggle="collapse" href="#editarEquipo" aria-expanded="true" aria-controls="editarEquipo"><i class="fa fa-ban" aria-hidden="true">
-                </i>&nbsp;Cancelar</a>
+              
+                  <button [disabled]="!forma.valid || forma.pristine" class="btn btn-success pull-left" type="submit" (click)="guardarEquipo(); forma.reset()">
+                      <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Guardar 
+                  </button>
+                  <a class="btn btn-danger pull-right" role="button" data-toggle="collapse" href="#collapseExample"
+                    aria-expanded="true" aria-controls="collapseExample"
+                    (click)="cancelar_registro_equipo($event); forma.reset()"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancelar </a>
+              
+              
             </div>
           </form>
-        </div> 
-  </div>
+        </div>
+      </div>
+
+
+      <div class="collapse" id="editarEquipo">
+          <div class="card container">
+            <form #forma2="ngForm">
+                  
+              <div class="card-header text-center" id="tituloEditar">
+                <h3>Editar Equipo</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-10">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="text-muted">Nombre</label>
+                          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-futbol-o"></i></div>
+                            <input type="text"  #nombre2="ngModel" [(ngModel)]="edicion_equipo.nombre_equipo" 
+                              [ngClass]="{'is-valid': nombre2?.valid && !nombre2.pristine ,'is-invalid':nombre2?.invalid && nombre2.touched}"
+                              name="nombre_equipo" class="form-control" placeholder="Ingrese el nombre del Equipo" required>
+                          </div>
+                          <div *ngIf="nombre2.errors?.required && nombre2.touched" class="error-campo">
+                              El nombre es obligatorio
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="text-muted">Año de fundación</label>
+                          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
+                            <input type="number" #fundacion2="ngModel" [(ngModel)]="edicion_equipo.anio_fundacion_equipo" 
+                              [(ngModel)]="edicion_equipo.anio_fundacion_equipo " 
+                              [ngClass]="{'is-valid': fundacion2?.valid && !fundacion2.pristine ,'is-invalid':fundacion2?.invalid && fundacion2.touched}"                  
+                              name="anio_fundacion_equipo" class="form-control" placeholder="Ingrese el año de fundacion del quipo" required>
+                          </div>
+                          <div *ngIf="fundacion2.errors?.required && fundacion2.touched"  class="error-campo">
+                              El año de fundación es obligatorio
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="text-muted">Color principal</label>
+                          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-check-circle"></i></div>
+                            <input type="text" #colorP2="ngModel" [(ngModel)]="edicion_equipo.color_principal_equipo"
+                              [ngClass]="{'is-valid': colorP2?.valid && !colorP2.pristine ,'is-invalid':colorP2?.invalid && colorP2.touched}"                                           
+                              name="color_principal_equipo" class="form-control" placeholder="Ingrese el color Principal del equipo" required>
+                          </div>
+                          <div *ngIf="colorP2.errors?.required && colorP2.touched"  class="error-campo">
+                              El Color principal es obligatorio
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="text-muted">Color secundario</label>
+                          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-check-circle-o"></i></div>
+                            <input type="text" #colorS2="ngModel" [(ngModel)]="edicion_equipo.color_secundario_equipo"
+                              [ngClass]="{'is-valid': colorS2?.valid && !colorS2.pristine ,'is-invalid':colorS2?.invalid && colorS2.touched}"                   
+                            
+                              name="colorS" class="form-control" placeholder="Ingrese el color secundario del equipo" required>
+                            
+                          </div>
+                          <div *ngIf="colorS2.errors?.required && colorS2.touched"  class="error-campo">
+                              El Color secundario es obligatorio
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="text-muted">Descripción</label>
+                              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
+                                <textarea type="text" class="form-control" name="descripcion_equipo" placeholder="Ingrese una descripción general del equipo"
+                                  #descripcion="ngModel" [(ngModel)]="edicion_equipo.descripcion_equipo">
+                                </textarea>
+                              </div>
+                              <!-- <div *ngIf="descripcion.errors?.required && descripcion.touched"  class="error-campo">
+                                  La descripción es obligatoria
+                              </div> -->
+                              <!-- [ngClass]="{'is-valid': descripcion?.valid && !descripcion.pristine ,'is-invalid':descripcion?.invalid && descripcion.touched}" -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          
+                            <div class="form-group">
+                              <label class="text-muted">Observación</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                  <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-map" aria-hidden="true"></i></div>
+                                  <textarea type="text" class="form-control" name="observacion_equipo" placeholder="Ingrese una observación del equipo"
+                                  #observacion_equipo="ngModel" [(ngModel)]="edicion_equipo.observacion_equipo">
+                                  </textarea>
+                                </div>
+                              </div>
+          
+                        </div>
+                    </div>
+                      
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          
+                          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-cog"></i></div>
+                            <select class="form-control" [(ngModel)]="categoriaSeleccionada" name="categoriaSeleccionada" #categoria="ngModel">
+                                <!-- <option selected >Seleccione la Categoria a la que pertenece</option>  -->
+                                <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria del equipo</option>
+                                <option [ngValue]="categoria._id" 
+                                    [disabled]="categoriaActualId==categoria._id" *ngFor="let categoria of categorias">
+                                    {{categoria.nombre_categoria}}
+                                  <span *ngIf="categoriaActualId==categoria._id">(Categoria Actual)
+                                  </span>
+                                </option>                        
+                              </select>
+                          </div>
+                          <!-- [ngClass]="{'is-valid': categoria?.valid && !categoria.pristine ,'is-invalid':categoria?.invalid && categoria.touched}" -->
+                          
+                          <!-- <div *ngIf="categoria.errors?.required && categoria.touched"  class="error-campo">
+                              La categoria es obligatoria
+                          </div> -->
+                        </div>
+                      </div>              
+                      <div class="col-md-6">
+                          <div class="input-group mb-2 mr-sm-2 mb-sm-0" *ngIf="addAndDelete">
+                              <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
+                              <div class="input-group">                
+                                <span>
+                                    <button class="btn btn-success" type="button" (click)="addLogro()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>                            
+                                  </span>
+                                </div>
+                            </div>
+                          <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0" *ngFor="let logro of edicion_equipo.logros_equipo; let i=index">
+                              <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-trophy"></i></div>
+                              <div class="input-group">
+                                  <input type="text" class="form-control" name="logro_{{i}}"   [(ngModel)]="edicion_equipo.logros_equipo[i].logro" placeholder="Logros del Equipo" aria-label="Logros">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-success" type="button" (click)="addLogro()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                    <button class="btn btn-danger" type="button" (click)="deleteLogro(i)"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+                                  </span>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <div class="form-group">
+                      <input type="file" (change)="imagen($event)" name="file-5[]" id="file-5" class=" inputfile inputfile-4" />
+                      <label for="file-5" ><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                        <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                        </svg></figure> <span>{{nombre_escudo}}</span></label>
+                    </div>
+                  </div>
+          
+                </div>
+          
+              </div>
+              <div class="card-footer btn-group">
+                <button  [disabled]="!forma2.valid" class="btn btn-success pull-left"  role="button" (click)="updateEquipo()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Guardar</button>
+                <a class="btn btn-danger pull-right" role="button" data-toggle="collapse" href="#editarEquipo" aria-expanded="true" aria-controls="editarEquipo"><i class="fa fa-ban" aria-hidden="true">
+                  </i>&nbsp;Cancelar</a>
+              </div>
+            </form>
+          </div> 
+      </div>
 </div>
   
