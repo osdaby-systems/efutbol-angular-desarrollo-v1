@@ -34,7 +34,7 @@
               <tbody>
                 <tr *ngFor="let equipo of categoria.codigo_equipo | OrdenVector : arrayCategoria[j].codigo_equipo; let k = index">
                   <th scope="row">{{k+1}}</th>
-                  <td> <a href="">{{equipo.nombre_equipo}}</a></td>
+                  <td> <a [routerLink]="['/detalle-equipo']" (click)="guardarEquipoSeleccionado(equipo)">{{equipo.nombre_equipo}}</a></td>
                   <td>{{equipo.PJ}}</td>
                   <td>{{equipo.PG}}</td>
                   <td>{{equipo.PE}}</td>
