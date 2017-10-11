@@ -131,7 +131,7 @@
             <ul>
               <div class="col-12" *ngFor="let item of (categoriaTemporada.codigo_equipo)">
                 <li>
-                  <a href="">{{item.nombre_equipo}}</a>
+                  <a [routerLink]="['/detalle-equipo']" (click)="guardarEquipoSeleccionado(item)">{{item.nombre_equipo}}</a>
                 </li>
               </div>
           </ul>

@@ -703,6 +703,7 @@ export class CalendarioComponent implements OnInit {
         j++;
       }
     });
+    // this.arrayPersonal2 = _.orderBy(this.arrayPersonal2,['nombre_personal'],['asc']);
     this.arrayPersonal2 = _.orderBy(this.arrayPersonal2,['apellido_personal'],['asc']);
 
 

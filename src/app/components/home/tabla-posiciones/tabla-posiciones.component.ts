@@ -52,6 +52,9 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
       this.cClass[0]=true;
       this.obtenerFechas(0);
   }
+  guardarEquipoSeleccionado(equi) {
+    localStorage.setItem('equipoSeleccionado', JSON.stringify(equi));
+  }
 
   ngDoCheck(){                        
     // this.cClass=new Array();     

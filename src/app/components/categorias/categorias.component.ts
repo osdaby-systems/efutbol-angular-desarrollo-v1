@@ -54,6 +54,9 @@ export class CategoriasComponent implements OnInit {
   ngOnInit() {
     this.obtenerTemporadas();
   }
+  guardarEquipoSeleccionado(equi) {
+    localStorage.setItem('equipoSeleccionado', JSON.stringify(equi));
+  }
 
   obtenerTemporadas() {
     this._temporadaService.getTemporadas().subscribe(

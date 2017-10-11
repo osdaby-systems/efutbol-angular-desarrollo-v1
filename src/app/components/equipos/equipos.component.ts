@@ -17,12 +17,13 @@ import swal from 'sweetalert2';
   templateUrl: './equipos.component.html',
   styleUrls: ['./equipos.component.css']
 })
-export class EquiposComponent implements OnInit {
+export class EquiposComponent implements OnInit,DoCheck {
   public selectUndefinedOptionValue2:any=undefined;
 
   public formulario_equipo = true;
   public url: string;
   aqui:any=null;
+  public tituloEditar:any;
 
   public nombre_escudo = "Imagen";
   public srcItem: Array<String>;
@@ -70,10 +71,12 @@ export class EquiposComponent implements OnInit {
 
   ngOnInit() {
     this.obtenerequipos();
+    this.tituloEditar=document.getElementById('tituloEditar');
   }
   ngDoCheck() {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+
   }
   guardarEquipo() {
     //Guardar equipo:
@@ -150,6 +153,13 @@ export class EquiposComponent implements OnInit {
   }
 
   verUpdateEquipo(equipo) {
+
+    $('#editarEquipo').on('shown.bs.collapse', function () {
+      // setTimeout(()=>this.tituloEditar.scrollTop=this.tituloEditar.scrollHeight,500);
+     
+      $('cuerpo').scrollspy({ target: '#tituloEditar' });
+      
+    });
     let ctx = this;
     this.edicion_equipo._id = equipo._id;
     this.edicion_equipo.nombre_equipo = equipo.nombre_equipo;
@@ -403,6 +413,10 @@ export class EquiposComponent implements OnInit {
         });
     })
   }
+
+  //scroll
+
+  
 
 }
 
