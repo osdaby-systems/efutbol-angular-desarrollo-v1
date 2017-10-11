@@ -9,7 +9,7 @@ import { Categoria } from '../../../models/categoria.model';
 import { Fecha } from '../../../models/fecha.model';
 import { Temporada } from '../../../models/temporada.models';
 
-import {OrdenVector} from '../../../pipes/orden-vector'
+import {OrdenVector} from '../../../pipes/orden-vector';
 import swal from 'sweetalert2';
 @Component({
   selector: 'app-tabla-posiciones',
@@ -223,13 +223,7 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
                 'error'
               )
             }
-                        
-          }); 
-         
-                          
-          
-    
-  
+          });
   }
 
   CategoriasTemporada(id:string){
@@ -251,7 +245,7 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
                 } 
                 i++;               
               }
-            }                         
+            }
         }
       },
       error => {
@@ -261,7 +255,6 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
           console.log(body);
         }
         });
-  }  
-    
+  }
 
 }

@@ -12,6 +12,7 @@ import{CategoriasComponent} from './components/categorias/categorias.component';
 import{JugadoresComponent} from './components/jugadores/jugadores.component';
 import {DetalleEquipoComponent} from './components/equipos/detalle-equipo/detalle-equipo.component';
 import { SancionComponent } from './components/sancion/sancion.component';
+import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 
 import{AuthService} from './services/auth.service';
 
@@ -34,6 +35,7 @@ const adminRoutes:Routes=[
   {path:'detalle-equipo',component:DetalleEquipoComponent},
   {path:'calendario-general', component: CalendarioGeneralComponent},
   {path:'sancion',component:SancionComponent},
+  {path:'tarjetas',component:TarjetasComponent},
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'**',component:HomeComponent}
 ];

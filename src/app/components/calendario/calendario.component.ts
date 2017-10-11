@@ -463,14 +463,20 @@ export class CalendarioComponent implements OnInit {
     let temporadaActual = this.temporada_actual.nombre_temporada;
     for (var index = 0; index < this.arrayPersonal1.length; index++) {
       if(this.arrayPersonal1[index] != undefined){
-      nombres1[j]= this.arrayPersonal1[index].apellido_personal + ' ' + this.arrayPersonal1[index].nombre_personal;
+      nombres1[j]= {
+        'datos':this.arrayPersonal1[index].apellido_personal + ' ' + this.arrayPersonal1[index].nombre_personal,
+        'estado':this.arrayPersonal1[index].estado_personal
+      }
       j++;
       }
     }
     for (var inde = 0; inde < this.arrayPersonal2.length; inde++) {
       console.log('Alo');
       if(this.arrayPersonal2[inde] != undefined){
-      nombres2[k]= this.arrayPersonal2[inde].apellido_personal + ' ' + this.arrayPersonal2[inde].nombre_personal;
+      nombres2[k]= {
+        'datos':this.arrayPersonal2[inde].apellido_personal + ' ' + this.arrayPersonal2[inde].nombre_personal,
+        'estado':this.arrayPersonal2[inde].estado_personal
+      }
       k++;
       }
     }
@@ -544,7 +550,14 @@ export class CalendarioComponent implements OnInit {
 
       if(nombres2.length != 0 ){
        let l= 55;
-       doc.text(nombres2[0],113,l);
+       if(nombres2[0].estado == false){
+        doc.text('SUSP',104,l);
+        doc.text('SUSP',176,l);
+        doc.text('SUS',185,l);
+        doc.text('SUS',192,l);
+        doc.text('SUS',198,l);
+      }
+       doc.text(nombres2[0].datos,113,l);
        for (var x = 1; x < nombres2.length; x++) {
          if(x==2 || x== 9 || x==13 || x==20 ){
           l=l+5;
@@ -552,12 +565,26 @@ export class CalendarioComponent implements OnInit {
          else{
           l=l+6
          }
-         doc.text(nombres2[x],113,l);
+         if(nombres2[x].estado == false){
+          doc.text('SUSP',104,l);
+          doc.text('SUSP',176,l);
+          doc.text('SUS',185,l);
+          doc.text('SUS',192,l);
+          doc.text('SUS',198,l);
+        }
+         doc.text(nombres2[x].datos,113,l);
        }
       }
       if(nombres1.length != 0 ){
         let m= 55;
-        doc.text(nombres1[0],15,m);
+        if(nombres1[0].estado == false){
+          doc.text('SUSP',5,m);
+          doc.text('SUSP',76,m);
+          doc.text('SUS',85,m);
+          doc.text('SUS',92,m);
+          doc.text('SUS',98,m);
+        }
+        doc.text(nombres1[0].datos,15,m);
         for (var y = 1; y < nombres1.length; y++) {
           if(y==2 || y== 9 || y==13 || y==20 ){
            m=m+5;
@@ -565,7 +592,14 @@ export class CalendarioComponent implements OnInit {
           else{
            m=m+6
           }
-          doc.text(nombres1[y],15,m);
+          if(nombres1[y].estado == false){
+            doc.text('SUSP',5,m);
+            doc.text('SUSP',76,m);
+            doc.text('SUS',85,m);
+            doc.text('SUS',92,m);
+            doc.text('SUS',98,m);
+          }
+          doc.text(nombres1[y].datos,15,m);
         }
        }
 

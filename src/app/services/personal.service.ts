@@ -155,4 +155,15 @@ export class PersonalService {
     .map(res => res.json());
   }
 
+  updatePersonalTarjetaAmarilla(token, id: string, estado:Boolean){
+    let params = {'estado_personal': estado};
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+
+    return this._http.put(this.url + 'personal/actualizar/' + id, params, { headers: headers })
+      .map(res => res.json());    
+  }
+
 }

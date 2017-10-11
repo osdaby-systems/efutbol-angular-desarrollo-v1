@@ -1,0 +1,110 @@
+<br>
+<div class="container jumbotron">
+  <div class="row">
+  <div class="col-12 text-center">
+      <h3>Registro de Tarjetas</h3>
+  </div>
+  <hr class="my-4">
+  <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+      <h5>Temporada: {{temporada_actual.nombre_temporada}}</h5>
+  </div>
+  <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+      
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <h5 class="mr-3">Categoria:</h5>
+              <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div>
+              <select class="form-control" (change)="onChangeCategoria($event)">
+                  <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria a la que pertenece</option>            
+                  <option [ngValue]="categoria._id"  *ngFor="let categoria of arrayCategoria">{{categoria.nombre_categoria}}</option>                        
+              </select>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class="container jumbotron" *ngIf="VerCalendario">
+  <h5>Tarjetas Amarillas Acumuladas</h5>
+  <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Equipo</th>
+          <th>Apellidos</th>
+          <th>Nombres</th>
+          <th># T.A.</th>
+          <th>Habilitación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let jugador of nuevoArrayTarjetasA | OrdenEquipota: nuevoArrayTarjetasA">
+            <td [ngClass]="{si: jugador.TotalAmarillas == 4 }" >{{jugador.EquipoJugador}}</td>
+            <td [ngClass]="{si: jugador.TotalAmarillas == 4 }">{{jugador.DatosJugador.apellido_personal}}</td>
+            <td [ngClass]="{si: jugador.TotalAmarillas == 4 }">{{jugador.DatosJugador.nombre_personal}}</td>
+            <th [ngClass]="{si: jugador.TotalAmarillas == 4 }">{{jugador.TotalAmarillas}}</th>
+            <th [ngClass]="{si: jugador.TotalAmarillas == 4 }">
+                  <!-- <label for="che" class1="col-form-label">Estado del Jugador</label> -->
+                  <label class="custom-control custom-checkbox">
+                      <input id="che" class="custom-control-input" type="checkbox" 
+                      [(ngModel)]="jugador.DatosJugador.estado_personal"
+                      >
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">SI/NO</span>
+                  </label>
+                  <button
+                  class="btn btn-outline-success"
+                  (click)="cambiarEstadoJugador(jugador.DatosJugador)"
+                  >Guardar</button>
+                  <!-- <button *ngIf="jugador.DatosJugador.estado_personal == false && jugador.TotalAmarillas != 4 && jugador.TotalAmarillas != 8 && jugador.TotalAmarillas != 12"
+                  (click)="cambiarEstadoJugador(jugador.DatosJugador)"
+                  >Habilitar</button> -->
+            </th>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div class="container jumbotron" *ngIf="VerCalendario">
+  <h5>Tarjetas Rojas por Fechas</h5>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <table aling="center" class="table table-sm" *ngFor="let datos of MiArrayTarjetasR | paginate: { itemsPerPage: 1, currentPage: p }">
+      <thead>
+        <tr>
+          <th>Equipo</th>
+          <th>Apellidos</th>
+          <th>Nombres</th>
+          <th># Fecha</th>
+          <th>Fecha P. Jugado</th>
+          <th>#P. Suspendidos</th>
+          <th>Habilitación</th>
+        </tr>
+      </thead>
+      <tbody>
+                <tr *ngFor="let dato of datos" >
+                        <td>{{dato.datosEquipo}}</td>
+                        <td>{{dato.datosJugador.apellido_personal}}</td>
+                        <td>{{dato.datosJugador.nombre_personal}}</td>
+                        <td>{{dato.numero_fecha+1}}</td>
+                        <th>{{dato.fecha}}</th>
+                        <th>{{dato.partidosSuspendidos}}</th>
+                        <th>
+                              <!-- <label for="che" class1="col-form-label">Estado del Jugador</label> -->
+                              <label class="custom-control custom-checkbox">
+                                  <input id="che" class="custom-control-input" type="checkbox" 
+                                  [(ngModel)]="dato.datosJugador.estado_personal"
+                                  >
+                                  <span class="custom-control-indicator"></span>
+                                  <span class="custom-control-description">SI/NO</span>
+                              </label>
+                              <button
+                              class="btn btn-outline-success"
+                              (click)="cambiarEstadoJugador(dato.datosJugador)"
+                              >Guardar</button>
+                              <!-- <button *ngIf="jugador.DatosJugador.estado_personal == false && jugador.TotalAmarillas != 4 && jugador.TotalAmarillas != 8 && jugador.TotalAmarillas != 12"
+                              (click)="cambiarEstadoJugador(jugador.DatosJugador)"
+                              >Habilitar</button> -->
+                        </th>
+                    </tr>
+
+        
+      </tbody>
+    </table>
+</div>

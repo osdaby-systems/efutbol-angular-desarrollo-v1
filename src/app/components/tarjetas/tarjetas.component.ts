@@ -11,6 +11,7 @@ import { Categoria } from '../../models/categoria.model';
 import { Fecha } from './../../models/fecha.model';
 import { Temporada } from '../../models/temporada.models';
 import {PersonalService} from '../../services/personal.service';
+import { UserService} from '../../services/user.service';
 
 import { GLOBAL } from '../../services/global';
 
@@ -18,14 +19,16 @@ import swal from 'sweetalert2';
 import {OrdenEquipota} from '../../pipes/orden-equipo-ta';
 
 @Component({
-  selector: 'app-calendario-general',
-  templateUrl: './calendario-general.component.html',
-  styleUrls: ['./calendario-general.component.css']
+  selector: 'app-tarjetas',
+  templateUrl: './tarjetas.component.html',
+  styleUrls: ['./tarjetas.component.css']
 })
-export class CalendarioGeneralComponent implements OnInit {
+export class TarjetasComponent implements OnInit {
+
+  public token;
 
   p: number = 1;
-  public selectUndefinedOptionValue2:any;
+  // public selectUndefinedOptionValue2:any;
   
   public temporada_actual: Temporada;
   public arrayCategoria = new Array();
@@ -35,30 +38,32 @@ export class CalendarioGeneralComponent implements OnInit {
   // public fechaAgrupadaT1:any;
   public VerCalendario= false;
 
-  public primeraVuelta= new Array();
-  public segundaVuelta= new Array();
+  // public primeraVuelta= new Array();
+  // public segundaVuelta= new Array();
 
-  public primeraVueltaClasificada : any;
-  public fechaAgrupadaSegundaVuelta: any;
+  // public primeraVueltaClasificada : any;
+  // public fechaAgrupadaSegundaVuelta: any;
   // public fechasPriemraVuelta: Fecha[];
 
   public verVuelta = '1';
 
   public url: string;
-  
   public MiArrayTarjetas;
-
   public nuevoArrayTarjetasA;
-  
+  public MiArrayTarjetasR;
+  public nuevoArrayTarjetasR;
   estadoPositivo: Boolean;
+
 
   constructor(
     private _temporadaService: TemporadaService,
     private _categoriaService: CategoriaService,
     private _fechaService: FechaService,
-    private _perosnaLService: PersonalService
+    private _perosnaLService: PersonalService,
+    private _userService: UserService
   ) {
     this.url = GLOBAL.url;
+    this.token = this._userService.getToken();
    }
 
   ngOnInit() {
@@ -122,7 +127,7 @@ export class CalendarioGeneralComponent implements OnInit {
   onChangeCategoria(e){
     this.categoriaSeleccionada=e;
     this.obtenerCalendario(e);
-    this.p = 1;
+    // this.p = 1;
   }
   
   // *ngFor="let fec of fechaAgrupada"
@@ -141,48 +146,48 @@ export class CalendarioGeneralComponent implements OnInit {
               this.pruebasTarjetas1(this.fechaAgrupada);
 
               this.VerCalendario = true;
-              console.log(this.fechaAgrupada);
-              console.log('Hay segunda Vuelta? ' + this.arrayCategoria[index].segunda_vuelta);
-              let val1 = 0;
-              let val2 = 0;
-              //Reiniciar los array
-              this.primeraVuelta = new Array();
-              this.segundaVuelta = new Array();
-              if( this.arrayCategoria[index].segunda_vuelta == true){
-                this.primeraVuelta.length = 0;
-                this.fechaAgrupada.forEach(element => {
-                  element.forEach(ele => {
-                    // console.log(ele.primera_segunda);
-                    if(ele.primera_segunda == 1){
-                      // console.log("Si");
-                      if(ele.id_equipo1 != null && ele.id_equipo2 !=null){
-                        this.primeraVuelta[val1] = ele;
-                        val1++;
-                      }
-                    }else{
-                      // console.log("No");
-                      if(ele.id_equipo1 != null && ele.id_equipo2 !=null){
-                        this.segundaVuelta[val2] = ele;
-                        val2++;
-                      }
-                    }
-                  });
-                });
-                this.primeraVueltaClasificada = _.values(_.groupBy(this.primeraVuelta, 'n_fecha'));
-                this.fechaAgrupadaSegundaVuelta = _.values(_.groupBy(this.segundaVuelta, 'n_fecha'));
-                console.log(this.primeraVueltaClasificada);
-                console.log(this.fechaAgrupadaSegundaVuelta);
-              this.fechaAgrupada = this.primeraVueltaClasificada;
-                // this.fechasPriemraVuelta = this.primeraVuelta;
-              console.log('Primera Vuelta: ' + this.primeraVuelta);
-              console.log('Segunda Vuelta: ' + this.segundaVuelta);
-              }else{
-                console.log("Un sola vuelta");
-                this.verVuelta = '1';
-                console.log('Primera Vuelta: ' + this.primeraVuelta);
-                console.log('Segunda Vuelta: ' + this.segundaVuelta);
+              // console.log(this.fechaAgrupada);
+              // console.log('Hay segunda Vuelta? ' + this.arrayCategoria[index].segunda_vuelta);
+              // let val1 = 0;
+              // let val2 = 0;
+              // //Reiniciar los array
+              // this.primeraVuelta = new Array();
+              // this.segundaVuelta = new Array();
+              // if( this.arrayCategoria[index].segunda_vuelta == true){
+              //   this.primeraVuelta.length = 0;
+              //   this.fechaAgrupada.forEach(element => {
+              //     element.forEach(ele => {
+              //       // console.log(ele.primera_segunda);
+              //       if(ele.primera_segunda == 1){
+              //         // console.log("Si");
+              //         if(ele.id_equipo1 != null && ele.id_equipo2 !=null){
+              //           this.primeraVuelta[val1] = ele;
+              //           val1++;
+              //         }
+              //       }else{
+              //         // console.log("No");
+              //         if(ele.id_equipo1 != null && ele.id_equipo2 !=null){
+              //           this.segundaVuelta[val2] = ele;
+              //           val2++;
+              //         }
+              //       }
+              //     });
+              //   });
+              //   this.primeraVueltaClasificada = _.values(_.groupBy(this.primeraVuelta, 'n_fecha'));
+              //   this.fechaAgrupadaSegundaVuelta = _.values(_.groupBy(this.segundaVuelta, 'n_fecha'));
+              //   console.log(this.primeraVueltaClasificada);
+              //   console.log(this.fechaAgrupadaSegundaVuelta);
+              // this.fechaAgrupada = this.primeraVueltaClasificada;
+              //   // this.fechasPriemraVuelta = this.primeraVuelta;
+              // console.log('Primera Vuelta: ' + this.primeraVuelta);
+              // console.log('Segunda Vuelta: ' + this.segundaVuelta);
+              // }else{
+              //   console.log("Un sola vuelta");
+              //   this.verVuelta = '1';
+              //   console.log('Primera Vuelta: ' + this.primeraVuelta);
+              //   console.log('Segunda Vuelta: ' + this.segundaVuelta);
 
-              }
+              // }
               // console.log(this.fechaAgrupada[0].Array[1]);
             }else{
               console.log('Fechas no encontradas');
@@ -207,23 +212,20 @@ export class CalendarioGeneralComponent implements OnInit {
   }
 
 
-  calendarioVuelta(value: string){
-    this.verVuelta = value;
-    this.p = 1;
-  }
+  // calendarioVuelta(value: string){
+  //   this.verVuelta = value;
+  //   this.p = 1;
+  // }
 
   pruebasTarjetas1(todasFechas) {
     console.log("Todas las Fechas de esta categoria");
     console.log(todasFechas);
-    let tarjetasAmarillas:{
-      num_fecha:Number,
-      fecha:String,
-      equipo: String,
-      id:String
-    }
 
  this.MiArrayTarjetas = new Array();
+ this.MiArrayTarjetasR = new Array();
 let i=0;
+let TR=0;
+
     todasFechas.forEach(element => {
         element.forEach(elem => {
         if(elem.tarjetas_amarilla_equipo1.length != 0){
@@ -247,17 +249,45 @@ let i=0;
             i=i+1;
           }
         }
+        if(elem.tarjetas_roja_equipo1.length != 0){
+          for (var x = 0; x < elem.tarjetas_roja_equipo1.length; x++) {
+            this.MiArrayTarjetasR[TR] = {
+              'numero_fecha':elem.n_fecha,
+              'fecha':elem.fecha,
+              'datosJugador': elem.tarjetas_roja_equipo1[x].id,
+              'partidosSuspendidos': elem.tarjetas_roja_equipo1[x].partidosSuspendidos,
+              'datosEquipo': elem.id_equipo1.nombre_equipo
+            }
+            TR = TR + 1;
+          }
+        }
+        if(elem.tarjetas_roja_equipo2.length != 0){
+          for (var y = 0; y < elem.tarjetas_roja_equipo2.length; y++) {
+            this.MiArrayTarjetasR[TR] = {
+              'numero_fecha':elem.n_fecha,
+              'fecha':elem.fecha,
+              'datosJugador': elem.tarjetas_roja_equipo2[y].id,
+              'partidosSuspendidos': elem.tarjetas_roja_equipo2[y].partidosSuspendidos,
+              'datosEquipo': elem.id_equipo2.nombre_equipo
+            }
+            TR = TR + 1;
+          }
+        }
+
       });
     });
 
-    console.log("Array de Tarjetas Primera Fecha");
-    console.log(this.MiArrayTarjetas);
-    console.log("Array agrupado");
+    // console.log("Array agrupado");
     this.MiArrayTarjetas = _.values(_.groupBy(this.MiArrayTarjetas, 'id'));
-
+    this.MiArrayTarjetasR = _.values(_.groupBy(this.MiArrayTarjetasR, 'numero_fecha'));
+    
     // this.MiArrayTarjetas = _.values(_.groupBy(this.MiArrayTarjetas, 'datosEquipo'));
+    // console.log(this.MiArrayTarjetas);
+    
+    console.log("Array de Tarjetas AMARILLAS");
     console.log(this.MiArrayTarjetas);
-
+    console.log("Array de Tarjetas ROJAS");
+    console.log(this.MiArrayTarjetasR);
 
     this.nuevoArrayTarjetasA = new Array();
     let j=0;
@@ -278,10 +308,28 @@ let i=0;
   cambiarEstadoJugador(Jugador){
     console.log(Jugador);
     //actualizar al jugador
-  }  
+    this._perosnaLService.updatePersonalTarjetaAmarilla(this.token, Jugador._id, Jugador.estado_personal)
+    .subscribe(
+      res => {
+        console.log(res);
+        if(!res.personaActualizada){
+          console.log('Error al actualizar');
+          swal(
+            'Error',
+            '¡El servidor no responde!',
+            'error'
+            );
+        }else{
+          swal(
+            'Jugador',
+            'Modificado',
+            'success'
+          );
+        }
+      },
+      error => {
 
+      }
+    );
+  }
 }
-
-
-
-

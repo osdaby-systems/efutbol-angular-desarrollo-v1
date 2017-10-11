@@ -58,13 +58,15 @@ import { EditarTemporadaComponent } from './components/temporada/ver-temporada/e
 import {DetalleEquipoComponent} from './components/equipos/detalle-equipo/detalle-equipo.component';
 import { CalendarioGeneralComponent } from './components/calendario-general/calendario-general.component';
 import { SancionComponent } from './components/sancion/sancion.component';
-
+import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 // PIPES
 import {OrdenVector} from './pipes/orden-vector';
+import {OrdenEquipota} from './pipes/orden-equipo-ta';
 
 
 //scroll
 import { SmoothScrollToDirective, SmoothScrollDirective } from "ng2-smooth-scroll";
+
 
 
 
@@ -97,9 +99,11 @@ import { SmoothScrollToDirective, SmoothScrollDirective } from "ng2-smooth-scrol
     CalendarioGeneralComponent,
     SancionComponent,
     OrdenVector,
+    OrdenEquipota,
     SancionComponent,
     SmoothScrollToDirective,
-    SmoothScrollDirective
+    SmoothScrollDirective,
+    TarjetasComponent
   ],
   imports: [
     BrowserModule,
