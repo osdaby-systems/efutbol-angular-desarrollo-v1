@@ -260,4 +260,33 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
         });
   }
 
+  pruebaTablaGoleadores(todasFechas){
+    let MiArrayGoles = new Array();
+    let i=0;
+    todasFechas.forEach(element => {
+      element.forEach(ele => {
+        if(ele.goles_equipo1 != 0){
+          for (var x = 0; x < ele.goles_equipo1.length; x++) {
+          MiArrayGoles[i]= {
+            'id': ele.goles_equipo1[x]._id,
+            'datosJugador': ele.goles_equipo1[x]
+          }
+          i++;
+          }
+        }
+        if(ele.goles_equipo2 != 0){
+          for (var y = 0; y < ele.goles_equipo2.length; y++) {
+            MiArrayGoles[i]= {
+              'id': ele.goles_equipo2[y]._id,
+              'datosJugador': ele.goles_equipo2[y]
+            }
+            i++;
+            }
+        }
+      });
+    });
+
+    console.log(MiArrayGoles);
+  }
+
 }
