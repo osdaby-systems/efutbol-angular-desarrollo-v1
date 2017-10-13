@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import  swal  from  'sweetalert2';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -25,6 +26,16 @@ export class NavbarComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
+    var navBC=$('#navbarCollapse');
+    navBC.click(()=>{
+        if(navBC.hasClass('show'))
+        {
+          navBC.removeClass('show');
+        }else{
+          navBC.addClass('show');
+        }
+      });
+      
   }
 
   ngDoCheck() {
@@ -38,7 +49,6 @@ export class NavbarComponent implements OnInit, DoCheck {
     location.reload();
     // this._router.navigate(['/']);
   }
-
 
   onSubmit() {
     this._US.signup(this.user).subscribe(
