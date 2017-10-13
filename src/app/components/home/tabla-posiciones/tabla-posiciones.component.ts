@@ -65,7 +65,8 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
 
 
   obtenerTemporadas() {
-    this.temporada_actual = this.temporada_actual = JSON.parse(localStorage.getItem('Temporada_Actual'));
+    this.temporada_actual =  JSON.parse(localStorage.getItem('Temporada_Actual'));
+    // console.log(this.temporada_actual._id);
     this.CategoriasTemporada(this.temporada_actual._id);
     // this._temporadaService.getTemporadas().subscribe(
     //   response => {

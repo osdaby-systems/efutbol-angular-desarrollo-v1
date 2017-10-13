@@ -53,6 +53,7 @@ export class TarjetasComponent implements OnInit {
   public MiArrayTarjetasR;
   public nuevoArrayTarjetasR;
   estadoPositivo: Boolean;
+  public selectUndefinedOptionValue2:any=undefined;
 
 
   constructor(
@@ -139,56 +140,16 @@ export class TarjetasComponent implements OnInit {
           this._fechaService.getFechaByIdCategoria(this.arrayCategoria[index]._id)
           .subscribe((res)=>{            
             if(res){
+              
               this.fecha=res;
+              console.log(this.fecha);
               console.log(":D");
               this.fechaAgrupada = _.values(_.groupBy(this.fecha.fechasEncontradas,'n_fecha'));
               
               this.pruebasTarjetas1(this.fechaAgrupada);
 
               this.VerCalendario = true;
-              // console.log(this.fechaAgrupada);
-              // console.log('Hay segunda Vuelta? ' + this.arrayCategoria[index].segunda_vuelta);
-              // let val1 = 0;
-              // let val2 = 0;
-              // //Reiniciar los array
-              // this.primeraVuelta = new Array();
-              // this.segundaVuelta = new Array();
-              // if( this.arrayCategoria[index].segunda_vuelta == true){
-              //   this.primeraVuelta.length = 0;
-              //   this.fechaAgrupada.forEach(element => {
-              //     element.forEach(ele => {
-              //       // console.log(ele.primera_segunda);
-              //       if(ele.primera_segunda == 1){
-              //         // console.log("Si");
-              //         if(ele.id_equipo1 != null && ele.id_equipo2 !=null){
-              //           this.primeraVuelta[val1] = ele;
-              //           val1++;
-              //         }
-              //       }else{
-              //         // console.log("No");
-              //         if(ele.id_equipo1 != null && ele.id_equipo2 !=null){
-              //           this.segundaVuelta[val2] = ele;
-              //           val2++;
-              //         }
-              //       }
-              //     });
-              //   });
-              //   this.primeraVueltaClasificada = _.values(_.groupBy(this.primeraVuelta, 'n_fecha'));
-              //   this.fechaAgrupadaSegundaVuelta = _.values(_.groupBy(this.segundaVuelta, 'n_fecha'));
-              //   console.log(this.primeraVueltaClasificada);
-              //   console.log(this.fechaAgrupadaSegundaVuelta);
-              // this.fechaAgrupada = this.primeraVueltaClasificada;
-              //   // this.fechasPriemraVuelta = this.primeraVuelta;
-              // console.log('Primera Vuelta: ' + this.primeraVuelta);
-              // console.log('Segunda Vuelta: ' + this.segundaVuelta);
-              // }else{
-              //   console.log("Un sola vuelta");
-              //   this.verVuelta = '1';
-              //   console.log('Primera Vuelta: ' + this.primeraVuelta);
-              //   console.log('Segunda Vuelta: ' + this.segundaVuelta);
-
-              // }
-              // console.log(this.fechaAgrupada[0].Array[1]);
+            
             }else{
               console.log('Fechas no encontradas');
             }
@@ -221,10 +182,10 @@ export class TarjetasComponent implements OnInit {
     console.log("Todas las Fechas de esta categoria");
     console.log(todasFechas);
 
- this.MiArrayTarjetas = new Array();
- this.MiArrayTarjetasR = new Array();
-let i=0;
-let TR=0;
+    this.MiArrayTarjetas = new Array();
+    this.MiArrayTarjetasR = new Array();
+    let i=0;
+    let TR=0;
 
     todasFechas.forEach(element => {
         element.forEach(elem => {
