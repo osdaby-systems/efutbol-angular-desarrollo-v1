@@ -455,6 +455,16 @@ export class CalendarioComponent implements OnInit {
   b(){
     console.log(this.arrayPersonal1);
     console.log(this.arrayPersonal2);
+
+    let n_fecha_juego = this.p;
+    let vocal_juego = this.datosVocalia.nombre_equipo_vocalia;
+    let equipo1_juego = this.datosVocalia.id_equipo1.nombre_equipo;
+    let equipo2_juego = this.datosVocalia.id_equipo2.nombre_equipo;
+    let fecha_juego = this.datosVocalia.fecha;
+    let hora_juega = this.datosVocalia.hora;
+    let categoria_juego = this.datosVocalia.categoria;
+    let estadio_juego = this.datosVocalia.estadio;
+
     let i=54;
     let j=0;
     let k=0;
@@ -496,6 +506,27 @@ export class CalendarioComponent implements OnInit {
 
      doc.setFontSize(14);
      doc.text(temporadaActual,60,12);
+     doc.setFontSize(12);
+     doc.text('HOJA DE CONTROL',15,22);
+     doc.text('FECHA: ' + n_fecha_juego,85,22);
+     doc.text('VOCAL: ' + vocal_juego,130,22);
+     
+     doc.setFontSize(10);
+     doc.text('CATEGORIA',6,30);
+     doc.text(categoria_juego,32,30);
+     doc.text('FECHA',57,30);
+     doc.text(fecha_juego,80,30);
+     doc.text('HORA',106,30);
+     doc.text(hora_juega,129,30);
+     doc.text('ESTADIO',146,30);
+     doc.text(estadio_juego,165,30);
+
+     doc.text('EQUIPO:',10,37);
+     doc.text(equipo1_juego,37,37);
+     doc.text('EQUIPO:',110,37);
+     doc.text(equipo2_juego,142,37);
+     //  doc.text('CATEGORIA',10,28);
+     
      doc.setFontSize(11);
      doc.text('#J',6,46);
      doc.text('#J',106,46);
@@ -506,22 +537,31 @@ export class CalendarioComponent implements OnInit {
      doc.text('TARJETAS',86,43);
      doc.text('GOL',176,46);
      doc.text('TARJETAS',186,43);
-     doc.setFontSize(7);
-     doc.text('#Cambio',7,200);
-     doc.text('#JUGADOR INGRESA',25,200);
-     doc.text('#JUGADOR SALE',60,200);
-     doc.text('UNO',9,206)  ;
-     doc.text('DOS',9,212);
-     doc.text('TRES',9,218);
-     doc.text('CUATRO',7,224);
+     
+     doc.text('CAMBIO NÚMERO ',7,200);
+     doc.text('1',48,200);
+     doc.text('2',59,200);
+     doc.text('3',69,200);
+     doc.text('4',79,200);
+     doc.text('5',88,200);
+     doc.text('6',98,200);
 
-     doc.text('#Cambio',107,200);
-     doc.text('#JUGADOR INGRESA',124,200);
-     doc.text('#JUGADOR SALE',158,200);
-     doc.text('UNO',108,206)  ;
-     doc.text('DOS',108,212);
-     doc.text('TRES',108,218);
-     doc.text('CUATRO',106,224);
+     doc.text('# JUGADOR INGRESA',9,206);
+     doc.text('# JUGADOR SALE',9,212);
+     doc.text('INFORME ARBITRAL',9,219);
+    
+
+     doc.text('CAMBIO NÚMERO',107,200);
+     doc.text('# JUGADOR INGRESA',108,206);
+     doc.text('# JUGADOR SALE',108,212);
+     doc.text('INFORME DE VOCALIA',107,219);
+     doc.text('1',148,200);
+     doc.text('2',159,200);
+     doc.text('3',168,200);
+     doc.text('4',178,200);
+     doc.text('5',188,200);
+     doc.text('6',197,200);
+    
       //  doc.text(nombres1[0],15,55);
       //  doc.text(nombres1[1],15,61);
       //  doc.text(nombres1[2],15,67);
@@ -547,7 +587,7 @@ export class CalendarioComponent implements OnInit {
       //  doc.text(nombres1[22],15,183);
       //  doc.text(nombres1[23],15,189);
       //  doc.text(nombres1[24],15,195);
-
+      doc.setFontSize(7);
       if(nombres2.length != 0 ){
        let l= 55;
        if(nombres2[0].estado == false){
