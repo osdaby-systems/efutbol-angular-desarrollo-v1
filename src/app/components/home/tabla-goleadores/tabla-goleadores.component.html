@@ -1,0 +1,50 @@
+<div id="tabla" class="jumbotron">
+  <h3 class="text-center">
+    Tabla de Goleadores
+    <!-- <hr class="featurette-divider"> -->
+  </h3>
+  <hr>
+  <!-- <ul class="nav nav-tabs nav-fill " role="tablist">
+    <li class="nav-item" *ngFor="let categoria of arrayCategoria;let i = index;">
+      <a class="nav-link active" [href]="'#'+categoria._id" (click)="onClass(i)" role="tab" data-toggle="tab"><i class="fa fa-futbol-o" aria-hidden="true"></i> {{categoria.nombre_categoria}}</a>
+    </li>
+  </ul> -->
+  
+  <!-- Tab panes -->
+  <div class="tab-content ">
+    <!-- <div *ngFor="let categoria of arrayCategoria;let j=index;"> -->
+        <!-- <div role="tabpanel"  class="tab-pane fade show active" *ngIf="cClass[j]"  [id]="categoria._id"> -->
+         <div>
+            <br>
+          <table class="table table-responsive">
+            <thead class="table-sm table-inverse">
+              <tr>
+                <th>#</th>
+                <th>Jugador</th>
+                <th>Equipo</th>
+                <th>Goles</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let equipo of categoria.codigo_equipo | OrdenVector : arrayCategoria[j].codigo_equipo; let k = index"> -->
+              <tr>
+                <td scope="row">1</td>
+                <td>Darwin Guailla</td>
+                <td>Te zulay</td>
+                <td>5</td>
+                <!-- <td>{{equipo.PE}}</td>
+                <td>{{equipo.PP}}</td>
+                <td>{{equipo.GF}}</td>
+                <td>{{equipo.GC}}</td>
+                <td>{{equipo.GD}}</td>
+                <td>{{equipo.P}}</td>
+                <td>{{equipo.SC}}</td> -->
+              </tr>                                                
+            </tbody>
+          </table>
+        </div>
+    <!-- </div> -->
+
+  </div>
+</div>

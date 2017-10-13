@@ -66,6 +66,7 @@ import {OrdenEquipota} from './pipes/orden-equipo-ta';
 
 //scroll
 import { SmoothScrollToDirective, SmoothScrollDirective } from "ng2-smooth-scroll";
+import { TablaGoleadoresComponent } from './components/home/tabla-goleadores/tabla-goleadores.component';
 
 
 
@@ -103,7 +104,8 @@ import { SmoothScrollToDirective, SmoothScrollDirective } from "ng2-smooth-scrol
     SancionComponent,
     SmoothScrollToDirective,
     SmoothScrollDirective,
-    TarjetasComponent
+    TarjetasComponent,
+    TablaGoleadoresComponent
   ],
   imports: [
     BrowserModule,
