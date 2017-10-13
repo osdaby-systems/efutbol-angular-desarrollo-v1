@@ -10,6 +10,7 @@ import { Fecha } from '../../../models/fecha.model';
 import { Temporada } from '../../../models/temporada.models';
 
 import {OrdenVector} from '../../../pipes/orden-vector';
+import {OrdenGoleadores} from '../../../pipes/orden-goleadores';
 import swal from 'sweetalert2';
 @Component({
   selector: 'app-tabla-posiciones',
@@ -30,6 +31,9 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
   public arrayCategoria = new Array();
   public categoriaSeleccionada:any;
   public categoriaSeleccionadaParaEquipos:any;
+
+  public MiArrayGoles;
+  public MiNuevoArrayGoles;
 
 
   // TABLA
@@ -110,6 +114,7 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
             if(res){
               this.fecha=res;
               console.log(this.fecha);
+              this.pruebaTablaGoleadores(this.fecha.fechasEncontradas);
               this.arrayCategoria[e].codigo_equipo.forEach((equipo,i)=> {
                 this.arrayCategoria[e].codigo_equipo[i]['PJ']=0;
                 this.arrayCategoria[e].codigo_equipo[i]['PG']=0;
@@ -262,32 +267,53 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
   }
 
   pruebaTablaGoleadores(todasFechas){
-    let MiArrayGoles = new Array();
+    console.log('TODAS LAS FECHAS PARA LA TBLA DE GOLEADORS');
+    console.log(todasFechas);
+
+    this.MiArrayGoles = new Array();
     let i=0;
-    todasFechas.forEach(element => {
-      element.forEach(ele => {
+    todasFechas.forEach(ele => {
         if(ele.goles_equipo1 != 0){
           for (var x = 0; x < ele.goles_equipo1.length; x++) {
-          MiArrayGoles[i]= {
+          this.MiArrayGoles[i]= {
             'id': ele.goles_equipo1[x]._id,
-            'datosJugador': ele.goles_equipo1[x]
+            'datosJugador': ele.goles_equipo1[x],
+            'equipo':ele.id_equipo1.nombre_equipo
           }
           i++;
           }
         }
         if(ele.goles_equipo2 != 0){
           for (var y = 0; y < ele.goles_equipo2.length; y++) {
-            MiArrayGoles[i]= {
+            this.MiArrayGoles[i]= {
               'id': ele.goles_equipo2[y]._id,
-              'datosJugador': ele.goles_equipo2[y]
+              'datosJugador': ele.goles_equipo2[y],
+              'equipo':ele.id_equipo2.nombre_equipo
             }
             i++;
             }
         }
-      });
     });
 
-    console.log(MiArrayGoles);
+    console.log(this.MiArrayGoles);
+
+    this.MiArrayGoles = _.values(_.groupBy(this.MiArrayGoles,'id'));
+
+    this.MiNuevoArrayGoles = new Array();
+    let j=0;
+    this.MiArrayGoles.forEach(element => {
+      // console.log(element[0]);
+      this.MiNuevoArrayGoles[j]={
+        'EquipoJugador':element[0].equipo,
+        'DatosJugador':element[0].datosJugador,
+        'TotalGoles':element.length
+      }
+      j++
+    });
+
+    console.log(this.MiNuevoArrayGoles);
+
+
   }
 
 }

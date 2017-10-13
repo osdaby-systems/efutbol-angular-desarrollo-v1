@@ -62,7 +62,7 @@ import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 // PIPES
 import {OrdenVector} from './pipes/orden-vector';
 import {OrdenEquipota} from './pipes/orden-equipo-ta';
-
+import {OrdenGoleadores} from './pipes/orden-goleadores';
 
 //scroll
 import { SmoothScrollToDirective, SmoothScrollDirective } from "ng2-smooth-scroll";
@@ -101,6 +101,7 @@ import { TablaGoleadoresComponent } from './components/home/tabla-goleadores/tab
     SancionComponent,
     OrdenVector,
     OrdenEquipota,
+    OrdenGoleadores,
     SancionComponent,
     SmoothScrollToDirective,
     SmoothScrollDirective,
