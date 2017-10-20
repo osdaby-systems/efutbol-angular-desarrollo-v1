@@ -71,7 +71,7 @@
             <div class="col-xs-5 col-md-5 col-lg-5 d-flex align-items-center">
               <div class="row text-center">
                 <div class="col-6">
-                  <button class="btn btn-outline-success btn-sm btn-block" (click)="guardarPartido(encuentros,encuentros.id_estadio,encuentros.fecha)">Guardar Partido</button>
+                  <button class="btn btn-outline-success btn-sm btn-block" (click)="guardarPartido(encuentros,encuentros.id_estadio,encuentros.fecha,control1,control2)">Guardar Partido</button>
                   <button *ngIf="id_Habilitar != encuentros._id" class="btn btn-sm btn-outline-info btn-block" (click)="HabilitarResultados(encuentros._id)">Habilitar Resultados</button>
                   <button *ngIf="id_Habilitar == encuentros._id" class="btn btn-sm btn-outline-danger btn-block" (click)="DesabilitarResultados()">Desabilitar Resultados</button>
                   <button class="btn btn-sm btn-outline-secondary btn-block" (click)="datos(encuentros)">Generar Vocalia</button>
@@ -89,6 +89,7 @@
           <div class="row text-center" *ngIf="encuentros.id_equipo1 != null && encuentros.id_equipo2 != null">
             <div class="col-lg-4">
                 <h4>{{encuentros.id_equipo1.nombre_equipo}}</h4>
+                <label><input type="checkbox" ng-model="control1"> Equipo no se presento</label>
               <div class="row">
 
                 <div class="col-7">
@@ -205,6 +206,7 @@
             </div>
             <div class="col-lg-4 text-center">
                 <h4>{{encuentros.id_equipo2.nombre_equipo}}</h4>
+                <label><input type="checkbox" ng-model="control2"> Equipo no se presento</label>
               <div class="row">
                 <div class="col-7">
                   <label for="inputPassword" class="col-form-label">Goles: </label>

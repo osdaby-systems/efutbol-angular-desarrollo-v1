@@ -46,7 +46,8 @@ export class CalendarioComponent implements OnInit {
 
   public partidosSuspencionEquipo1 = new Array();
   public partidosSuspencionEquipo2 = new Array();
-
+  public control1:boolean;
+  public control2:boolean;
 
   public token;
   public temporada_actual: Temporada;
@@ -372,7 +373,7 @@ export class CalendarioComponent implements OnInit {
   }
 
 
-  guardarPartido(partido,estadio,fecha){
+  guardarPartido(partido,estadio,fecha,control1,control2){
     console.log("Partido: ");
     console.log('Fin PAARTIDO');
     let data1 = new Array();
@@ -413,7 +414,17 @@ export class CalendarioComponent implements OnInit {
     partido.estado_fecha = this.partidoJugado;
     partido.jugado = this.partidoJugado;
     console.log(partido);
-
+    if(control1)
+    {
+      partido.fecha.goles_equipo2.push("59e2046d345d734210a3b7b4"); 
+      partido.fecha.goles_equipo2.push("59e2046d345d734210a3b7b4");
+      partido.fecha.goles_equipo1.lenth=0;
+    }else if(control2)
+    {
+      partido.fecha.goles_equipo1.push("59e2046d345d734210a3b7b4");
+      partido.fecha.goles_equipo1.push("59e2046d345d734210a3b7b4");
+      partido.fecha.goles_equipo2.lenth=0;
+    }
     this._fechaService.updateCalendario(this.token,partido,partido._id).subscribe(
       response =>{
         if(!response){
