@@ -39,10 +39,10 @@ export class EquiposComponent implements OnInit,DoCheck {
   public nuevo_equipo: Equipo;
   public equipo: any;
   public edicion_equipo: Equipo;
-  public categorias: Categoria;
+  public categorias: any;
   public categoriaActualId: string;
   public categoriaSeleccionada: any;
-  public categoriasAct: Categoria;
+  public categoriasAct: any;
   public a: any;
 
 
@@ -180,13 +180,17 @@ export class EquiposComponent implements OnInit,DoCheck {
       this.addAndDelete = false;
     }
     _.forEach(this.categorias,  function (value)  {
-      // var l=_.filter(value.codigo_equipo,equipo._id);
-      var l = _.filter(value.codigo_equipo, function (o)  {  return  o == equipo._id;  });
+      if(value!=undefined && value!=null){
+        console.log(value);
+        // var l=_.filter(value.codigo_equipo,equipo._id);
+        var l = _.filter(value.codigo_equipo, function (o)  {  return  o == equipo._id;  });
+            console.log(value);
+            if (l.length != 0) {
+              ctx.categoriaActualId = value._id;
+            }
 
-      console.log(value);
-      if (l.length != 0) {
-        ctx.categoriaActualId = value._id;
       }
+      
     });
 
 
