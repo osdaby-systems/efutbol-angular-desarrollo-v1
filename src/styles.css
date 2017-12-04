@@ -6,7 +6,7 @@
 body {
   /* background-image: url('/assets/img/Imagen.jpg'); */
   /* background-color: #FDF2E9    !important; */
-  background-image: url('/assets/img/fondo_equipo.jpg');
+  background-image: url('/assets/img/Imagen.jpg') !important;
   padding-top: 3rem;
   padding-bottom: 3rem;
   color: #5a5a5a;
