@@ -10,26 +10,28 @@
     </div>
    
   </div>
-  <div class="card-block">
+  <div class="card-block ">
     <br>
     <nav aria-label="navigation" >
         <ul class="pagination justify-content-center">
           <li class="page-item">
-            <a class="page-link pointer"  (click)="restar()" aria-label="Previous">
-              <span aria-hidden="true"  >&laquo;</span>
-              <span class="sr-only">Previous</span>
+            <a class="page-link pointer"  style="    color: white;
+            background-color: #292b2c!important" (click)="restar()" aria-label="Previous">
+          
+              <span>Noticias-Anteriores</span>
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link pointer" (click)="sumar()" aria-label="Next">
-              <span aria-hidden="true" >&raquo;</span>
-              <span class="sr-only">Next</span>
+            <a class="page-link pointer" style="    color: white;
+            background-color: #292b2c!important" (click)="sumar()" aria-label="Next">
+              
+              <span>Noticias-Siguientes</span>
             </a>
           </li>
         </ul>
       </nav>
     <hr>
-    <div class="card margenCard" *ngFor = "let noticiaItem of noticia ; let i = index">
+    <div class="card text-white bg-dark margenCard" *ngFor = "let noticiaItem of noticia ; let i = index">
       <div class="card-header">
           <div class="row justify-content-end">
               <a *ngIf="identity" (click)="emitirEvento('editarNoticia',noticiaItem,srcItem[i])" class="btn btn-info pointer" 

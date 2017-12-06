@@ -7,7 +7,7 @@
 
 <div class="container jumbotron" *ngIf="mostrar_formulario_inicial">
   <h5 class="text-center">
-    categorias de la temporada: {{temporada_actual.nombre_temporada}}
+    CATEGORIAS DE LAS TEMPORADAS: {{temporada_actual.nombre_temporada}}
     <!-- <small>{{temporada_actual._id}}</small><br> -->
   </h5>
 </div>
@@ -119,6 +119,7 @@
           <h3>{{categoriaTemporada.nombre_categoria}}</h3>
         </div>
         <div class="card-block">
+          <hr style="background: white;">
           <p class="card-text">
             Número de Equipos Participantes: {{categoriaTemporada.n_equipos_categoria}} <br> Número de Equipos Registrados
             : {{categoriaTemporada.codigo_equipo.length}} <br>

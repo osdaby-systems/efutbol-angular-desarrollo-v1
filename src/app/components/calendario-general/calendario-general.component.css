@@ -40,3 +40,8 @@
 .si{
     background-color:#f5c6cb;
 }
+
+.jumbotron{
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white;
+}

@@ -30,3 +30,8 @@ IMG.imgcenter{
 .bg-primary {
     background-color: #039fed!important;
 } 
+
+.jumbotron{
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white;
+}

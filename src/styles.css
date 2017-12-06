@@ -259,9 +259,12 @@ input[type="radio"] {
 
 /*fondo de las card*/
 .card{
+  background-color: rgba(0, 0, 0, 0.8) !important;
   /* background-image: url('/assets/img/fondo_equipo.jpg'); */
   border-radius: 16px !important;
   box-shadow: 0px 0px 10px 2px #000 !important;
+  color: white;
+  
 }
 
 .jumbotron{

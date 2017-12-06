@@ -6,12 +6,12 @@
 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                 <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-flag-checkered" aria-hidden="true"></i></div>
                 <!-- <label for="exampleFormControlSelect1">Example select</label> -->
-                <select  class="form-control"  [(ngModel)]="equipo">
+                <select  class="form-control"  [(ngModel)]="equipo" style="background: black ;color:white;">
                                 <!-- <option value="" disabled selected>Select your option</option> -->
                                 <option disabled hidden [value]="selectUndefinedOptionValue">Seleccione un equipo</option>
                                 
                                 <option  *ngFor="let equipo of equipos" [ngValue]="equipo">{{equipo.nombre_equipo}}</option>
-                            
+     
                         </select>
 </div>
 

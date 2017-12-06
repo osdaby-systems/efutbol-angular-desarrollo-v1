@@ -1,4 +1,4 @@
-    <div id="tabla" class="jumbotron" style="background-color: rgba(0, 0, 0, 0.8);color: white;">
+    <div id="tabla" class="jumbotron"  >
     <h3 class="text-center">
       Tabla de Posiciones
       <!-- <hr class="featurette-divider"> -->
@@ -28,10 +28,10 @@
                   <th class="numeric">GC</th>
                   <th class="numeric">GD</th>
                   <th class="numeric">PTS</th>
-                  <th class="numeric">SC</th>
+                  <!-- <th class="numeric">SC</th> -->
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="table-sm table-inverse" >
                 <tr *ngFor="let equipo of categoria.codigo_equipo | OrdenVector : arrayCategoria[j].codigo_equipo; let k = index">
                   <th scope="row">{{k+1}}</th>
                   <td> <a [routerLink]="['/detalle-equipo']" (click)="guardarEquipoSeleccionado(equipo)">{{equipo.nombre_equipo}}</a></td>
@@ -43,7 +43,7 @@
                   <td>{{equipo.GC}}</td>
                   <td>{{equipo.GD}}</td>
                   <td>{{equipo.P}}</td>
-                  <td>{{equipo.SC}}</td>
+                  <!-- <td>{{equipo.SC}}</td> -->
                 </tr>                                                
               </tbody>
             </table>
@@ -130,6 +130,10 @@
       <h3 class="text-center">
         Tabla de Goleadores
       </h3>
+      <!-- <hr>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+    | paginate: { itemsPerPage: 1, currentPage: p }
+    -->
       <hr>
       <div class="tab-content ">        
              <div>
@@ -145,7 +149,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let jugador of MiNuevoArrayGoles | OrdenGoleadores: MiNuevoArrayGoles ;let n=index">
+                  <tr *ngFor="let jugador of MiNuevoArrayGoles | OrdenGoleadores: MiNuevoArrayGoles  ;let n=index">
                     <td scope="row">{{n+1}}</td>
                     <td>{{jugador.EquipoJugador}}</td>
                     <td>{{jugador.DatosJugador.apellido_personal}}</td>

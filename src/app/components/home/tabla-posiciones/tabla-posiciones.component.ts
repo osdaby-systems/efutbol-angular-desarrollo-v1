@@ -19,6 +19,7 @@ import swal from 'sweetalert2';
 })
 
 export class TablaPosicionesComponent implements OnInit, DoCheck {
+  p: number = 1;
   public cClass:Array<Boolean>;  
   public token;
   public temporada_actual: Temporada;
@@ -46,7 +47,8 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
     private _categoriaService: CategoriaService,
     private _fechaService: FechaService
   ) {    
-    this.token = this._userService.getToken();     
+    this.token = this._userService.getToken();   
+    this.pruebaTablaGoleadores();  
    }
 
    ngOnInit() {
@@ -55,6 +57,7 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
       this.cClass=new Array();     
       this.cClass[0]=true;
       this.obtenerFechas(0);
+      
   }
   guardarEquipoSeleccionado(equi) {
     localStorage.setItem('equipoSeleccionado', JSON.stringify(equi));
@@ -114,7 +117,7 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
             if(res){
               this.fecha=res;
               console.log(this.fecha);
-              this.pruebaTablaGoleadores(this.fecha.fechasEncontradas);
+              // this.pruebaTablaGoleadores(this.fecha.fechasEncontradas);
               this.arrayCategoria[e].codigo_equipo.forEach((equipo,i)=> {
                 this.arrayCategoria[e].codigo_equipo[i]['PJ']=0;
                 this.arrayCategoria[e].codigo_equipo[i]['PG']=0;
@@ -266,52 +269,59 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
         });
   }
 
-  pruebaTablaGoleadores(todasFechas){
+  pruebaTablaGoleadores(){
     console.log('TODAS LAS FECHAS PARA LA TBLA DE GOLEADORS');
-    console.log(todasFechas);
 
-    this.MiArrayGoles = new Array();
-    let i=0;
-    todasFechas.forEach(ele => {
-        if(ele.goles_equipo1 != 0){
-          for (var x = 0; x < ele.goles_equipo1.length; x++) {
-          this.MiArrayGoles[i]= {
-            'id': ele.goles_equipo1[x]._id,
-            'datosJugador': ele.goles_equipo1[x],
-            'equipo':ele.id_equipo1.nombre_equipo
-          }
-          i++;
-          }
-        }
-        if(ele.goles_equipo2 != 0){
-          for (var y = 0; y < ele.goles_equipo2.length; y++) {
-            this.MiArrayGoles[i]= {
-              'id': ele.goles_equipo2[y]._id,
-              'datosJugador': ele.goles_equipo2[y],
-              'equipo':ele.id_equipo2.nombre_equipo
+    this._fechaService.obtenerTodasFechas().subscribe(
+      res => {
+        console.log('Respuesta del res');
+        console.log(res);
+        this.MiArrayGoles = new Array();
+        let i=0;
+        res.forEach(ele => {
+            if(ele.goles_equipo1 != 0){
+              for (var x = 0; x < ele.goles_equipo1.length; x++) {
+              this.MiArrayGoles[i]= {
+                'id': ele.goles_equipo1[x]._id,
+                'datosJugador': ele.goles_equipo1[x],
+                'equipo':ele.id_equipo1.nombre_equipo
+              }
+              i++;
+              }
             }
-            i++;
+            if(ele.goles_equipo2 != 0){
+              for (var y = 0; y < ele.goles_equipo2.length; y++) {
+                this.MiArrayGoles[i]= {
+                  'id': ele.goles_equipo2[y]._id,
+                  'datosJugador': ele.goles_equipo2[y],
+                  'equipo':ele.id_equipo2.nombre_equipo
+                }
+                i++;
+                }
             }
-        }
-    });
-
+        });
+        
     console.log(this.MiArrayGoles);
+    
+        this.MiArrayGoles = _.values(_.groupBy(this.MiArrayGoles,'id'));
+    
+        this.MiNuevoArrayGoles = new Array();
+        let j=0;
+        this.MiArrayGoles.forEach(element => {
+          // console.log(element[0]);
+          this.MiNuevoArrayGoles[j]={
+            'EquipoJugador':element[0].equipo,
+            'DatosJugador':element[0].datosJugador,
+            'TotalGoles':element.length
+          }
+          j++
+        });
+        console.log(this.MiNuevoArrayGoles);
+      },
+      err => { 
+        console.log(err);
+      });
 
-    this.MiArrayGoles = _.values(_.groupBy(this.MiArrayGoles,'id'));
-
-    this.MiNuevoArrayGoles = new Array();
-    let j=0;
-    this.MiArrayGoles.forEach(element => {
-      // console.log(element[0]);
-      this.MiNuevoArrayGoles[j]={
-        'EquipoJugador':element[0].equipo,
-        'DatosJugador':element[0].datosJugador,
-        'TotalGoles':element.length
-      }
-      j++
-    });
-
-    console.log(this.MiNuevoArrayGoles);
 
 
   }

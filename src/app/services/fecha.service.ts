@@ -51,4 +51,11 @@ export class FechaService {
     return this._http.put(this.url + 'fecha/actualizar/'+id, params, { headers: headers })
       .map(res => res.json());
   }
+  obtenerTodasFechas() {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this._http.get(this.url + 'fecha/', { headers: headers })
+      .map(res => res.json());
+  }
 }

@@ -13,7 +13,7 @@
             <h5>Categoria:</h5>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                     <div class="input-group-addon frm-addon" style="width: 2.6rem"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></div>
-                    <select class="form-control" (change)="onChangeCategoria($event)">
+                    <select class="form-control" (change)="onChangeCategoria($event)" style="background: black ;color:white;">
                         <option disabled hidden [ngValue]="selectUndefinedOptionValue2">Seleccione la categoria a la que pertenece</option>            
                         <option [ngValue]="categoria._id"  *ngFor="let categoria of arrayCategoria">{{categoria.nombre_categoria}}</option>                        
                     </select>
@@ -116,7 +116,7 @@
                                             </p>
                                             <p *ngIf="(item.fecha)"> 
                                             <strong>Fecha: </strong>{{item.fecha | date : 'yMMMMEEEEd'}} <br>
-                                            <strong>Estadio: </strong> <a href="">{{item.id_estadio.nombre_estadio}}</a> <br>
+                                            <strong>Estadio: </strong> <a href='estadios'>{{item.id_estadio.nombre_estadio}}</a> <br>
                                             <strong>Hora: </strong> {{item.hora}} <br>
                                             <strong>Vocal: </strong> {{item.nombre_equipo_vocalia}} 
                                         </p>

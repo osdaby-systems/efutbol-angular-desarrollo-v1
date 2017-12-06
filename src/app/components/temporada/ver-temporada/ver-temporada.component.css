@@ -5,3 +5,8 @@ a :hover{
     -ms-transform: scale(1.2);
     transform: scale(1.2);
   }
+
+  .jumbotron{
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white;
+}
