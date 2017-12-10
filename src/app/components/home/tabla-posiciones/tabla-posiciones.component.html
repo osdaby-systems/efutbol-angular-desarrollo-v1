@@ -130,10 +130,9 @@
       <h3 class="text-center">
         Tabla de Goleadores
       </h3>
-      <!-- <hr>
+      <hr>
       <pagination-controls (pageChange)="p = $event"></pagination-controls> 
-    | paginate: { itemsPerPage: 1, currentPage: p }
-    -->
+    
       <hr>
       <div class="tab-content ">        
              <div>
@@ -149,8 +148,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let jugador of MiNuevoArrayGoles | OrdenGoleadores: MiNuevoArrayGoles  ;let n=index">
-                    <td scope="row">{{n+1}}</td>
+                  <tr *ngFor="let jugador of MiArrayGoles | paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
+                    <td scope="row">{{(i+1)}}</td>
                     <td>{{jugador.EquipoJugador}}</td>
                     <td>{{jugador.DatosJugador.apellido_personal}}</td>
                     <td>{{jugador.DatosJugador.nombre_personal}}</td>

@@ -103,7 +103,7 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
     this.cClass.fill(false);    
     this.cClass[i]=true;            
     //OBTENER PARTIDOS
-    console.log(this.arrayCategoria);    
+    //console.log(this.arrayCategoria);    
     this.obtenerFechas(i);
 
   }
@@ -116,7 +116,7 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
           .subscribe((res)=>{            
             if(res){
               this.fecha=res;
-              console.log(this.fecha);
+              //console.log(this.fecha);
               // this.pruebaTablaGoleadores(this.fecha.fechasEncontradas);
               this.arrayCategoria[e].codigo_equipo.forEach((equipo,i)=> {
                 this.arrayCategoria[e].codigo_equipo[i]['PJ']=0;
@@ -219,8 +219,8 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
               });
               
               this.arrayCategoria[e].codigo_equipo=_.orderBy(this.arrayCategoria[e].codigo_equipo, ['P','GD'], ['desc','desc']);
-              console.log("Fechas por equipo");          
-              console.log(fechasPorEquipo);
+              //console.log("Fechas por equipo");          
+              //console.log(fechasPorEquipo);
             }
           },(err)=>{
             if(err.status==404){
@@ -274,8 +274,8 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
 
     this._fechaService.obtenerTodasFechas().subscribe(
       res => {
-        console.log('Respuesta del res');
-        console.log(res);
+        // console.log('Respuesta del res');
+        // console.log(res);
         this.MiArrayGoles = new Array();
         let i=0;
         res.forEach(ele => {
@@ -316,7 +316,11 @@ export class TablaPosicionesComponent implements OnInit, DoCheck {
           }
           j++
         });
+
+        console.log('Array de Goleadores Sin Ordenar');
         console.log(this.MiNuevoArrayGoles);
+        console.log(_.orderBy(this.MiNuevoArrayGoles, ['TotalGoles'], ['desc']));
+        this.MiArrayGoles = _.orderBy(this.MiNuevoArrayGoles, ['TotalGoles'], ['desc']);
       },
       err => { 
         console.log(err);
